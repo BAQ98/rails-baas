@@ -1,0 +1,10 @@
+{
+  "rubyLsp.formatter": "rubocop",
+  "ruby.format": false,
+  "editor.formatOnSave": true,
+
+  "files.associations": {
+    "*.html.erb": "erb",
+    "_*.html.erb": "erb"
+  }
+}

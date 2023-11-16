@@ -1,0 +1,12 @@
+<main class="p-4 md:ml-64">
+  <%= yield %>
+  <% if flash.any? %>
+    <% flash.each do |type, msg| %>
+      <% if type === "alert" %>
+        <%= render_toast header: "Account #{type} status:", description: "#{msg}", variant: :destructive %>
+      <% else %>
+        <%= render_toast header: "Account #{type} status:", description: "#{msg}", class: "border border-blue-600"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+</main>

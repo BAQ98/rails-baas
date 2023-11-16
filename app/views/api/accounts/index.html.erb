@@ -1,0 +1,161 @@
+<% if auth_signed_in? %>
+  <section class="bg-gray-50 mt-16 font-poppins dark:bg-gray-800 ">
+    <div class="justify-center flex-1 max-w-6xl px-4 mx-auto md:px-6">
+      <div class="overflow-x-auto bg-white rounded shadow dark:bg-gray-900">
+        <div class="">
+          <h2 class="px-6 py-4 pb-4 text-xl font-medium border-b border-gray-300 dark:border-gray-700 dark:text-gray-400">
+            Account Manager
+          </h2>
+          <div class="flex flex-wrap items-center justify-between px-4 py-2 border-b dark:border-gray-700">
+            <div class="flex items-center pl-3">
+              <p class="text-xs text-gray-500">Show</p>
+              <div class="px-2 text-xs text-gray-500">
+                <%= render_popover do %>
+                  <%= popover_trigger do %>
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-gray-800 bg-gray-100 hover:bg-gray-200 focus:ring-0.5 focus:outline-none focus:ring-gray-200 px-1 rounded focus:bg-slate-300 text-sm text-center inline-flex items-center  dark:hover:bg-gray-200 dark:focus:ring-gray-200" type="button">
+                      <%= params[:per_page].present? ? params[:per_page].to_s : "5" %>
+                      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                    </button>
+                  <% end %>
+                  <%= popover_content class:"z-10 bg-white divide-y divide-gray-100 rounded shadow w-fit dark:bg-gray-700 p-2" do %>
+                    <ul class="text-xs text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li>
+                        <%= link_to "5", { :per_page => "5", :page => params[:page] }, class:"block py-1 px-2 text-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+                      </li>
+                      <li>
+                        <%= link_to "10", { :per_page => "10", :page => params[:page] }, class:"block py-1 px-2 text-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+                      </li>
+                      <li>
+                        <%= link_to "15", { :per_page => "15", :page => params[:page] }, class:"block py-1 px-2 text-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+                      </li>
+                    </ul>
+                  <% end %>
+                <% end %>
+              </div>
+              <p class="text-xs text-gray-500">entries per table</p>
+            </div>
+            <%= form_tag accounts_path do %>
+              <div class="flex gap-3 px-4 py-2">
+                <%= render_input name: "Seach Account", label: "Search Account", placeholder: "Search...", id: "searchAccount", type: :text %>
+                <%= submit_tag do %>
+                  <button class="flex items-center text-gray-700 dark:text-gray-400 dark:hover:text-blue-300 hover:text-blue-600">
+                    <span class="mr-2 text-xs">Go</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                    </svg>
+                  </button>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <%= render_table  class:"w-full table-auto" do %>
+            <%= table_head class:"bg-gray-100 dark:bg-gray-700 [&>tr]:text-gray-500 [&>tr]:border-b" do %>
+              <%= table_header class: "w-[5%] pl-6 font-medium dark:text-gray-400" do %>
+                <%= render_checkbox name: "no", label: "No." %>
+              <% end %>
+              <%= table_header "ID", class: "w-[5%]" %>
+              <%= table_header "Avatar", class: "w-[10%]" %>
+              <%= table_header "Email", class: "w-[20%] px-6 text-left" %>
+              <%= table_header "", class: "ml-auto w-[5%] px-6 text-right"  %>
+            <% end %>
+            <%= table_body do %>
+              <% @accounts.each.with_index do |account, i| %>
+                <%= table_row do %>
+                  <%= table_column class:"text-center px-6 py-3 font-medium dark:text-gray-400" do %>
+                    <%= render_checkbox name: "no", label: "#{i + 1}" %>
+                  <% end %>
+                  <%= table_column class:"text-center px-6 py-3 font-medium dark:text-gray-400" do %>
+                    <% account[:id].to_s %>
+                  <% end %>
+                  <%= table_column class:"text-center px-6 py-3 font-medium dark:text-gray-400" do %>
+                    <div class="relative mx-auto w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                      <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  <% end %>
+                  <%= table_column class:"text-left px-6 py-3 font-medium dark:text-gray-400" do %>
+                    <% account[:email] %>
+                  <% end %>
+                  <%= table_column class:"px-6 py-3 font-medium dark:text-gray-400" do %>
+                    <div class="flex items-center justify-end">
+                      <%= render_button as: :link, href: "/accounts/#{account[:id]}", class:"p-2 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-transparent rounded-lg hover:bg-transparent hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 active:scale-90 transition-all ease duration-300" do  %>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                      <% end %>
+                      <%= render_alert_dialog do %>
+                        <%= alert_dialog_trigger do %>
+                          <%= render_button class: "p-2 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-transparent rounded-lg hover:bg-transparent hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 active:scale-90 transition-all ease duration-300" do %>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          <% end %>
+                        <% end %>
+                        <%= alert_dialog_content do %>
+                          <div class="flex flex-col space-y-2 text-center sm:text-left">
+                            <h2 class="text-lg font-semibold">Are you absolutely sure?</h2>
+                            <p class="text-sm text-muted-foreground">
+                              This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                            </p>
+                          </div>
+                          <div class="flex flex-row mt-4 justify-end gap-3">
+                            <%= render_button "Cancel", variant: :outline, data: { action:"click->ui--dialog#close" } %>
+                            <%= link_to account_path(account), data: { turbo_method: :delete } do %>
+                              <%= render_button "Delete", variant: :destructive %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="flex flex-wrap items-center justify-between px-6 py-3">
+          <p class="mb-4 text-xs lg:mb-0 dark:text-gray-400">Showing <%= "#{@accounts.length}" %> entries</p>
+          <nav aria-label="page-navigation ">
+            <ul class="flex mb-4 list-style-none lg:mb-0 gap-1">
+              <% if params[:page].to_i > 1 %>
+                <li class="page-item ">
+                  <%= link_to 'Prev', {:page => "#{params[:page].to_i - 1}"}, class:"relative block px-3 py-1 text-xs text-gray-700 transition-all duration-300 rounded-md dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 " %>
+                </li>
+              <% else %>
+                <li class="page-item disabled ">
+                  <a href="#" class="relative block px-3 py-1 text-xs text-gray-700 transition-all duration-300 rounded-md pointer-events-none dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600">Prev
+                  </a>
+                </li>
+              <% end %>
+              <% @total_pages.times do |num| %>
+                <li class="page-item ">
+                  <%= link_to "#{num + 1}", { :page => "#{num + 1}", :per_page => params[:per_page] }, class:"relative block px-3 py-1 text-xs text-gray-100 transition-all duration-300 #{params[:page] === (num + 1).to_s || (num === 0 && params[:page].blank? ) ? "bg-blue-600" : "bg-gray-100 text-gray-700"}  rounded-md hover:text-blue-700 hover:bg-blue-200" %>
+                </li>
+              <% end %>
+              <li class="page-item ">
+                <% if @total_pages > params[:page].to_i %>
+                  <%= link_to 'Next', {:page => "#{params[:page].to_i + 1}"}, class:"relative block px-3 py-1 text-xs text-gray-700 transition-all duration-300 rounded-md dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 " %>
+                <% else %>
+                  <li class="page-item disabled ">
+                    <a href="" class="relative block px-3 py-1 text-xs text-gray-700 transition-all duration-300 rounded-md pointer-events-none dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600">Next
+                    </a>
+                  </li>
+                <% end %>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <div class="mt-32">
+    <h1>
+      You need to loggin
+    </h1>
+    <a href="/auths/sign_in" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+      click here
+    </a>
+  </div>
+<% end %>
