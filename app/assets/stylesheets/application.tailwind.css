@@ -2,3 +2,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-scrollbar: rebeccapurple;
+  --secondary-scrollbar: cornflowerblue;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-scrollbar) var(--primary-scrollbar);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-scrollbar);
+  border-radius: 4px;
+  height: 4px;
+}

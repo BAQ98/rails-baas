@@ -1,1 +1,62 @@
-
+<% nil_string = "User haven't update this information yet!" %>
+<div class="flex flex-col justify-center items-center mt-16">
+  <div class="relative flex flex-col items-center rounded-lg max-w-6xl mx-auto bg-white shadow-md p-3 border border-gray-200">
+    <% if @account %>
+      <div class="relative w-24 h-24 border flex justify-center align-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+        <!-- <img src="#{@account.image_url}" alt="#{@account.name}" /> -->
+      </div>
+    <% else %>
+      <div class="relative w-24 h-24 border flex justify-center align-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+        <svg class="w-28 h-28 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+    <% end %>
+    <div class="mt-2 mb-8 w-full">
+      <h4 class="px-2 text-xl font-bold text-navy-700 dark:text-white">
+        General Information
+      </h4>
+      <p class="mt-2 px-2 text-base text-gray-600">Lorem ipsum dolor sit amet,
+        officia excepteur ex fugiat reprehenderit
+        enim labore culpa sint ad nisi Lorem pariatur mollit ex esse
+        exercitation amet. Nisi anim cupidatat excepteur
+        officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet
+        voluptate voluptate dolor minim nulla est
+        proident.</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 px-2 w-full">
+      <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+        <p class="text-sm text-gray-600">Name</p>
+        <p class="text-base font-medium text-navy-700 dark:text-white">
+          <%= @account.name ? @account.name : nil_string %>
+        </p>
+      </div>
+      <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+        <p class="text-sm text-gray-600">Username</p>
+        <p class="text-base font-medium text-navy-700 dark:text-white">
+          <%= @account.username ? @account.username : nil_string %>
+        </p>
+      </div>
+      <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+        <p class="text-sm text-gray-600">Position</p>
+        <p class="text-base font-medium text-navy-700 dark:text-white">
+          <%= @account.position ? @account.position : nil_string %>
+        </p>
+      </div>
+      <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+        <p class="text-sm text-gray-600 mb-2">Work History</p>
+        <p class="text-base font-medium text-navy-700 dark:text-white">
+          <% if @account.skills.length() != 0 %>
+            <% @account.skills.each do |skill| %>
+              <span class="bg-blue-100 text-blue-800 me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                <%= skill %>
+              </span>
+            <% end %>
+          <% else %>
+            <%= nil_string %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

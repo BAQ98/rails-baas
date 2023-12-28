@@ -39,7 +39,7 @@
               <% end %>
               <%= popover_content class: "p-2 !right-0 w-fit" do %>
                 <div>
-                  <a href="#" class="text-gray-700 whitespace-nowrap hover:bg-gray-100 flex items-center justify-start gap-2 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                  <a href="/profile" class="text-gray-700 whitespace-nowrap hover:bg-gray-100 flex items-center justify-start gap-2 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
@@ -49,7 +49,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                     </svg>
-                    <span>Help</span>
+                   <span>Help</span>
                   </a>
                   <%= render_separator class: "my-2" %>
                   <%= button_to destroy_auth_session_path, method: :delete, class:"flex items-center gap-2 text-gray-700 whitespace-nowrap hover:bg-gray-100 px-4 py-2 text-sm w-full" do %>
@@ -63,6 +63,7 @@
             <% end %>
           <% else %>
             <div class="flex gap-4">
+              <%= render_button text: "Sign Up", variant: :outline, as: :link, href: '/auths/sign_up' %>
               <%= render_button text: "Login", variant: :default, as: :link, href: '/auths/sign_in' %>
             </div>
           <% end %>

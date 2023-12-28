@@ -1,8 +1,10 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "Home", type: :request do
-  describe "GET /index" do
-    it "succeeds" do
+require 'rails_helper'
+
+RSpec.describe 'Home', type: :request do
+  describe 'GET /index' do
+    it 'succeeds' do
       get root_path
       expect(response).to be_successful
     end

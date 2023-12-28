@@ -1,43 +1,18 @@
+# frozen_string_literal: true
+
 module Api
   class AccountsController < ApplicationController
+    before_action :authenticate_auth!
+
     def index
-      @accounts = Auth.all
+      @accounts = Profile.with_auth
+      @total_records = @accounts
       @total_pages = total_pages(@accounts)
       @accounts = paginate(@accounts)
     end
 
     def show
-      @account = Auth.find(params[:id])
-    end
-
-    def create
-      @account = Auth.new(params[:email])
-    end
-
-    def update
-      @account = Auth.find(params[:id])
-    end
-
-    def update
-      @account = Object.find(params[:id])
-      if @account.update_attributes(params[:password])
-        flash[:success] = "Object was successfully updated"
-        redirect_to @account
-      else
-        flash[:error] = "Something went wrong"
-        render "edit"
-      end
-    end
-
-    def destroy
-      @account = Auth.find(params[:id])
-      if @account.destroy
-        flash[:success] = "Account was successfully deleted."
-        redirect_to accounts_path
-      else
-        flash[:error] = "Something went wrong"
-        redirect_to accounts_path
-      end
+      @account = Profile.with_auth.find(params[:id])
     end
   end
 end
