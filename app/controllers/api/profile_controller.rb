@@ -21,7 +21,7 @@ module Api
     private
 
     def profile_params
-      params.require(:profile).permit(:auth_id, :name, :username, :position, skills: []).tap { |p|
+      params.require(:profile).permit(:auth_id, :name, :username, :position, :avatar, skills: []).tap { |p|
         p[:skills].reject!(&:empty?)
       }
     end

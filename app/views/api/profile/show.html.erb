@@ -1,96 +1,101 @@
 <%= form_with model: @profile, url: profile_path, remote: true, method: :patch do |form| %>
-  <section data-controller="profile" data-profile-tag-list-item-template-id="skillTag" data-profile-tag-empty-template-id="skillTagEmpty" data-profile- class="p-4">
+  <section data-controller="profile" data-profile-tag-list-item-template-id="skillTag" data-profile-tag-empty-template-id="skillTagEmpty" class="p-4">
     <div class="">
       <h2 class="text-4xl font-semibold text-gray-900">Profile</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600"> This information will be displayed publicly so be careful what you share.</p>
+      <p class="mt-1 text-sm leading-6 text-gray-600"> This information will be
+        displayed publicly so be careful what you share.</p>
       <div class="mt-10 grid grid-cols-12 gap-x-4 gap-y-6">
-        <div class="sm:col-span-4">
-          <div class="block p-6 bg-white border border-gray-100 rounded-lg shadow-md">
-            <div class="flex items-center gap-x-6">
-              <div class="relative flex w-28 h-28 items-center overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
+        <div class=" sm:col-span-4 block p-6 bg-white border border-gray-100 rounded-lg shadow-md">
+          <div class="flex items-center gap-x-6">
+            <div class="relative flex w-28 h-28 items-center overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
+              <% if @profile.avatar.representable? %>
+                <%= image_tag @profile.avatar.variant(:thumb) %>
+              <% else %>
                 <svg class="text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                 </svg>
+              <% end %>
+            </div>
+            <div class="flex flex-col gap-1">
+              <h3 class="text-2xl font-medium">
+                <%= @profile.name %>
+              </h3>
+              <span class="text-lg text-gray-600">
+                <%= @profile.position %>
+              </span>
+              <div class="">
+                <%= form.label :avatar, class: "flex w-fit items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"/>
+                  </svg>
+                  <span>
+                    Change picture
+                  </span>
+                <% end %>
+                <%= form.file_field :avatar, class: "[&::file-selector-button]:hidden" %>
               </div>
-              <div class="flex flex-col gap-1">
-                <h3 class="text-2xl font-medium">
-                  <%= @profile.name %>
-                </h3>
-                <span class="text-lg text-gray-600">
-                  <%= @profile.position %>
-                </span>
-                <div>
-                  <%= form.label :avatar, class: "flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer" do %>
-                    <%= form.file_field :avatar, hidden: true  %>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-                    </svg>
-                    <span>Change picture<span/>
-                    <% end %>
+
+            </div>
+          </div>
+        </div>
+        <div class="sm:col-span-8">
+          <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+            <h3 class="my-2 text-2xl font-bold">General Information</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="">
+                <%= form.label :name, for: "name", class: "block text-sm font-medium leading-6 text-gray-900" %>
+                <div class="mt-2">
+                  <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <%= form.text_field :name, id: "name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Input profile name" %>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <%= form.label :username, for: "username", class: "block text-sm font-medium leading-6 text-gray-900" %>
+                <div class="mt-2">
+                  <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <%= form.text_field :username, id: "username", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Input profile username" %>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <%= form.label :position, for: "position", class: "block text-sm font-medium leading-6 text-gray-900" %>
+                <div class="mt-2">
+                  <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <%= form.text_field :position, id: "position", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Input profile position" %>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <%= form.label :skills, for: "skills", class: "block text-sm font-medium leading-6 text-gray-900" %>
+                <div class="mt-2">
+                  <div class="flex items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg ring-inset focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:max-w-md overflow-x-auto">
+                    <ul data-profile-target="skillTags" data-skills="<%= @profile.skills.to_a %>" class="flex ms-1 text-sm h-full gap-2">
+                      <!-- tag here -->
+                      <% unless @profile.skills.empty? %>
+                        <% @profile.skills.each do |skill| %>
+                          <li class="relative bg-blue-100 text-blue-800 text-xs font-medium py-1 px-2 rounded whitespace-nowrap">
+                            <button data-value="<%= skill %>" data-action="click->profile#clickToRemoveTag" class="absolute top-[-6px] right-[-6px] cursor-pointer">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd"/>
+                              </svg>
+                            </button>
+                            <span>
+                                <%= skill %>
+                              </span>
+                            <input type="text" multiple="multiple" hidden=true value="<%= skill %>" name="profile[skills][]"/>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    <input type="text" data-profile-target="skillInput" data-action="keydown.enter->profile#insertSkillTag keydown->profile#backspaceToRemoveTag" class="border-none bg-transparent p-2.5 m-0 text-sm ring-0 focus:ring-0 w-full" placeholder="Hit Enter for input"/>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="sm:col-span-8">
-            <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow-md">
-              <h3 class="my-2 text-2xl font-bold">General Information</h3>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="">
-                  <%= form.label :name, for:"name", class:"block text-sm font-medium leading-6 text-gray-900"  %>
-                  <div class="mt-2">
-                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                      <%= form.text_field :name, id:"name", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Input profile name" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <%= form.label :username, for:"username", class:"block text-sm font-medium leading-6 text-gray-900"  %>
-                  <div class="mt-2">
-                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                      <%= form.text_field :username, id:"username", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Input profile username" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <%= form.label :position, for:"position", class:"block text-sm font-medium leading-6 text-gray-900"  %>
-                  <div class="mt-2">
-                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                      <%= form.text_field :position, id:"position", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Input profile position" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <%= form.label :skills, for:"skills", class:"block text-sm font-medium leading-6 text-gray-900"  %>
-                  <div class="mt-2">
-                    <div class="flex items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg ring-inset focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:max-w-md overflow-x-auto">
-                      <ul data-profile-target="skillTags" data-skills="<%= @profile.skills.to_a %>"  class="flex ms-1 text-sm h-full gap-2">
-                        <!-- tag here -->
-                        <% unless @profile.skills.empty? %>
-                          <% @profile.skills.each do |skill| %>
-                            <li class="relative bg-blue-100 text-blue-800 text-xs font-medium py-1 px-2 rounded whitespace-nowrap">
-                              <button data-value="<%= skill %>" data-action="click->profile#clickToRemoveTag" class="absolute top-[-6px] right-[-6px] cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                                  <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
-                                </svg>
-                              </button>
-                              <span>
-                                <%= skill %>
-                              </span>
-                              <input type= "text" multiple="multiple" hidden=true value="<%= skill %>" name="profile[skills][]" />
-                            </li>
-                          <% end %>
-                        <% end %>
-                      </ul>
-                      <input type="text" data-profile-target="skillInput" data-action="keydown.enter->profile#insertSkillTag keydown->profile#backspaceToRemoveTag" class="border-none bg-transparent p-2.5 m-0 text-sm ring-0 focus:ring-0 w-full" placeholder="Hit Enter for input" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-6 flex items-center justify-start gap-x-6">
-                <%= form.submit "Save", class:"flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-                <%= link_to 'Cancel', :back, class:"text-sm font-semibold leading-6 text-gray-900" %>
-              </div>
+            <div class="mt-6 flex items-center justify-start gap-x-6">
+              <%= form.submit "Save", class: "flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+              <%= link_to 'Cancel', :back, class: "text-sm font-semibold leading-6 text-gray-900" %>
             </div>
           </div>
         </div>
@@ -101,16 +106,17 @@
         <li class="relative bg-blue-100 text-blue-800 text-xs font-medium py-1 px-2 rounded whitespace-nowrap">
           <button data-action="click->profile#clickToRemoveTag" class="absolute top-[-6px] right-[-6px] cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-              <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd"/>
             </svg>
           </button>
           <span>
           </span>
-          <input multiple="multiple" hidden="hidden" type="text" name="profile[skills][]" >
+          <input multiple="multiple" hidden="hidden" type="text" name="profile[skills][]">
         </li>
       </template>
       <template id="skillTagEmpty">
-        <%= form.text_field :skills, multiple: true, value: "",hidden:true, include_hidden: false %>
+        <%= form.text_field :skills, multiple: true, value: "", hidden: true, include_hidden: false %>
       </template>
-    </section>
-  <% end %>
+    </div>
+  </section>
+<% end %>

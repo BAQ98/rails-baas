@@ -10,9 +10,10 @@ module Api
       @total_pages = total_pages(@accounts)
       @accounts = paginate(@accounts)
     end
-
+    
     def show
       @account = Profile.with_auth.find(params[:id])
     end
+
   end
 end

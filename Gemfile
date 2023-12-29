@@ -4,9 +4,10 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
+gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
-gem 'image_processing', '~> 1.12', '>= 1.12.2'
+gem 'image_processing', '~> 1.12'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'meta-tags'

@@ -10,4 +10,9 @@ RSpec.describe Profile, type: :model do
   it 'should include auth' do
     expect(profile.auth.email).to be_truthy
   end
+
+  describe 'validate avatar' do
+    it { is_expected.to validate_content_type_of(:avatar).allowing('image/png', 'image/jpeg') }
+    it { is_expected.to validate_size_of(:avatar).less_than(1.megabyte) }
+  end
 end
