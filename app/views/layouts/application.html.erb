@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ecom - Backend as a Service</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-  <body>
-    <div class="antialiased bg-gray-50 h-screen dark:bg-gray-900">
-      <%= render "components/partial/header" %>
-      <%= render "components/partial/sidebar" %>
-      <%= render "components/partial/main" %>
-    </div>
-  </body>
+<head>
+  <title>Ecom - Backend as a Service</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+<div class="antialiased bg-gray-50 h-screen dark:bg-gray-900">
+  <%= render "components/partial/header" %>
+  <%= render "components/partial/sidebar" %>
+  <%= render "components/partial/main" %>
+  <% if flash.any? %>
+    <% flash.each do |type, msg| %>
+      <% if type === "alert" || type === "error" %>
+        <%= render_toast header: "#{type} status:", description: "#{msg}", variant: :destructive %>
+      <% else %>
+        <%= render_toast header: "#{type} status:", description: "#{msg}", class: "border border-blue-600" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+</body>
 </html>

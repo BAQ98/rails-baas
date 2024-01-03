@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   resources :accounts, controller: 'api/accounts'
   resource :profile, controller: 'api/profile', only: [:show, :update, :destroy]
+  resources :kanbans, controller: 'api/kanbans'
+
   root 'home#index'
 end

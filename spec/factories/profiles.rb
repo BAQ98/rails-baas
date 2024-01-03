@@ -7,7 +7,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     position { Faker::Job.title }
     skills { [Faker::Job.key_skill, Faker::Job.key_skill, Faker::Job.key_skill] }
-    
+
     association :auth
   end
 end

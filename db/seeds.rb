@@ -17,3 +17,10 @@
     password_confirmation: 'password'
   )
 end
+
+6.times do |_n|
+  Kanban.create!(
+    name: "Project #{_n}",
+    description: Faker::Lorem.paragraph(sentence_count: 2)
+  )
+end
