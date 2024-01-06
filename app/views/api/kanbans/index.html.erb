@@ -1,0 +1,45 @@
+<section class="w-full">
+  <%= render 'api/kanbans/shared/kanban_head' do %>
+    <%= render_dialog do %>
+      <%= dialog_trigger do %>
+        <%= render_button("+ Create Kanban", variant: :outline) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+          <span>
+              Create Kanban
+            </span>
+        <% end %>
+      <% end %>
+      <%= dialog_content do %>
+        <div class="mx-auto w-full">
+          <h1 class="mx-auto block uppercase tracking-wide text-gray-700 font-bold text-xl">
+            Create new Kanban Project
+          </h1>
+          <%= render "form_kanban", kanban: @kanban %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= render 'api/kanbans/shared/notice' %>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 mx-32 mt-16">
+    <% @kanbans.each do |kanban| %>
+      <div class="mx-3 mb-6 h-48">
+        <%= link_to "/kanbans/#{kanban.id}", class: "block p-6 bg-white h-full border border-gray-200 overflow-hidden rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <%= kanban.name %>
+          </h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">Here
+            are the
+            <%= kanban.description %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+
+</section>
+
+
