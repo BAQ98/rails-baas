@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :kanban_column do
-    name { "MyString" }
+    name { "Column Name" }
     kanban { nil }
   end
 end

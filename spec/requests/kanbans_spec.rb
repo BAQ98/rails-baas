@@ -18,7 +18,7 @@ RSpec.describe 'Api::KanbansController', type: :request do
   describe 'GET /index' do
     context 'all kanbans exist' do
       it 'is successful' do
-        get kanbans_path controller: 'api/kanbans#index', headers: headers
+        get kanbans_path, headers: headers
         expect(response).to be_successful
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe 'Api::KanbansController', type: :request do
   end
 
   describe 'GET /show' do
-    context 'Render profile and return truthy json' do
+    context 'Render profiles and return truthy json' do
       it 'renders a successful response and caches all kanbans' do
         get kanbans_path(kanban.id)
         expect(Rails.cache.exist?('all_kanbans')).to be(false)

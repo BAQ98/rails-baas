@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Api::ProfileController', type: :request do
+RSpec.describe 'Api::ProfilesController', type: :request do
   let(:headers) do
     { 'ACCEPT' => 'application/json' }
   end
@@ -10,7 +10,7 @@ RSpec.describe 'Api::ProfileController', type: :request do
   before { sign_in auth }
 
   describe 'GET #show' do
-    context 'profile is current auth and exist' do
+    context 'profiles is current auth and exist' do
       it 'is successful' do
         get profile_path
         expect(response).to be_successful

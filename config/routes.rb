@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     get '/auths_by_email', to: 'auths_by_emails#show', as: :auths_by_email
   end
 
-  resources :accounts, controller: 'api/accounts'
-  resource :profile, controller: 'api/profile', only: [:show, :update, :destroy]
-  resources :kanbans, controller: 'api/kanbans'
+  resources :accounts
+  resource :profile, only: [:show, :update]
+  resources :kanbans
+  resources :kanban_columns
+  resources :cards
 
   root 'home#index'
 end
