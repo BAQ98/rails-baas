@@ -1,7 +1,17 @@
 class CardsController < ApplicationController
   before_action :authenticate_auth!
+  before_action :set_card, only: %i[ show update destroy ]
 
   def index
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   def create
@@ -19,7 +29,12 @@ class CardsController < ApplicationController
 
   private
 
+  def set_card
+    @card = Card.find(params[:id])
+  end
+
   def card_params
     params.require(:card).permit(:title, :content, :position, :kanban_column_id)
   end
+
 end

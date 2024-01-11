@@ -51,18 +51,15 @@
                data-kanban-col-id="<%= column.id %>"
           >
             <% column.cards.sort_by { |card| card.position }.each do |card| %>
-              <a href="#"
-                 class="block w-full p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                 data-kanban-card-id="<%= card.id %>"
-                 data-kanban-target="kanbanCard"
-              >
+              <%= link_to card_path(card.id), class: "block w-full p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700", data: { "kanban-card-id": "#{card.id}", "kanban-target": "kanbanCard" } do %>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <%= card.title %>
                 </h5>
                 <p class="font-normal text-gray-700 dark:text-gray-400">
                   <%= card.content %>
                 </p>
-              </a>
+              <% end %>
+
             <% end %>
           </div>
           <%= render_dialog do %>
