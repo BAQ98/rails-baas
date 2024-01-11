@@ -57,73 +57,36 @@ RSpec.describe 'Api::KanbansController', type: :request do
     end
   end
 
-  # describe 'GET /edit' do
-  #   it 'renders a successful response' do
-  #     kanban = Kanban.create! valid_attributes
-  #     get edit_kanban_url(kanban)
-  #     expect(response).to be_successful
-  #   end
-  # end
+  # describe "PATCH /kanbans/sort" do
   #
-  #   context 'with invalid parameters' do
-  #     it 'does not create a new Kanban' do
-  #       expect {
-  #         post kanbans_url, params: { kanban: invalid_attributes }
-  #       }.to change(Kanban, :count).by(0)
-  #     end
+  #   let(:column1) { create(:kanban_column, kanban: kanban) }
+  #   let(:column2) { create(:kanban_column, kanban: kanban) }
+  #   let(:card1) { create(:card, kanban_column: column1) }
+  #   let(:card2) { create(:card, kanban_column: column1) }
+  #   let(:card3) { create(:card, kanban_column: column2) }
   #
-  #     it 'renders a response with 422 status (i.e. to display the 'new' template)' do
-  #       post kanbans_url, params: { kanban: invalid_attributes }
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #
-  #   end
-  # end
-  #
-  # describe 'PATCH /update' do
-  #   context 'with valid parameters' do
-  #     let(:new_attributes) {
-  #       skip('Add a hash of attributes valid for your model')
+  #   let(:params) do
+  #     {
+  #       kanban_params: {
+  #         kanbanIds: {
+  #           columns: [
+  #             {
+  #               id: column1.id,
+  #               cardIds: [card3.id, card1.id]
+  #             },
+  #             {
+  #               id: column2.id,
+  #               cardIds: [card2.id]
+  #             }
+  #           ]
+  #         }
+  #       }
   #     }
-  #
-  #     it 'updates the requested kanban' do
-  #       kanban = Kanban.create! valid_attributes
-  #       patch kanban_url(kanban), params: { kanban: new_attributes }
-  #       kanban.reload
-  #       skip('Add assertions for updated state')
-  #     end
-  #
-  #     it 'redirects to the kanban' do
-  #       kanban = Kanban.create! valid_attributes
-  #       patch kanban_url(kanban), params: { kanban: new_attributes }
-  #       kanban.reload
-  #       expect(response).to redirect_to(kanban_url(kanban))
-  #     end
   #   end
   #
-  #   context 'with invalid parameters' do
-  #
-  #     it 'renders a response with 422 status (i.e. to display the 'edit' template)' do
-  #       kanban = Kanban.create! valid_attributes
-  #       patch kanban_url(kanban), params: { kanban: invalid_attributes }
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #
-  #   end
-  # end
-  #
-  # describe 'DELETE /destroy' do
-  #   it 'destroys the requested kanban' do
-  #     kanban = Kanban.create! valid_attributes
-  #     expect {
-  #       delete kanban_url(kanban)
-  #     }.to change(Kanban, :count).by(-1)
-  #   end
-  #
-  #   it 'redirects to the kanbans list' do
-  #     kanban = Kanban.create! valid_attributes
-  #     delete kanban_url(kanban)
-  #     expect(response).to redirect_to(kanbans_url)
+  #   it "sorts the cards" do
+  #     patch kanban_sort_path(kanban.id), params: params
+  #     expect(response).to have_http_status(:ok)
   #   end
   # end
 end

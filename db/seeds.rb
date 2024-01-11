@@ -9,19 +9,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-30.times do |_n|
+Auth.destroy_all
+20.times do |_n|
   Auth.create!(
     email: Faker::Internet.email,
     password: 'password',
     password_confirmation: 'password'
-  )
-end
-
-6.times do |_n|
-  Kanban.create!(
-    name: "Project #{_n}",
-    description: Faker::Lorem.paragraph(sentence_count: 2)
   )
 end
 

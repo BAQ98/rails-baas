@@ -1,6 +1,7 @@
 FactoryBot.define do
-  factory :kanban_column do
+  factory :kanban_column, class: 'KanbanColumn' do
+    sequence(:id, &:to_i)
     name { "Column Name" }
-    kanban { nil }
+    kanban
   end
 end

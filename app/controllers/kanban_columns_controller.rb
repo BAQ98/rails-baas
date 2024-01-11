@@ -1,9 +1,6 @@
 class KanbanColumnsController < ApplicationController
   before_action :authenticate_auth!
 
-  def index
-  end
-
   def create
     @kanban_column = KanbanColumn.new(kanban_column_params)
     respond_to do |format|

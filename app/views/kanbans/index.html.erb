@@ -21,18 +21,18 @@
       <% end %>
     <% end %>
   <% end %>
-    
+
   <%= render "components/ui/notice" %>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 mx-32 mt-16">
+  <div class="grid grid-cols-2 md:grid-cols-4 mx-32 mt-16 gap-4">
     <% @kanbans.each do |kanban| %>
-      <div class="mx-3 mb-6 h-48">
+      <div class="relative h-48">
+
         <%= link_to "/kanbans/#{kanban.id}", class: "block p-6 bg-white h-full border border-gray-200 overflow-hidden rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             <%= kanban.name %>
           </h5>
-          <p class="font-normal text-gray-700 dark:text-gray-400">Here
-            are the
+          <p class="font-normal text-gray-700 dark:text-gray-400">
             <%= kanban.description %>
           </p>
         <% end %>

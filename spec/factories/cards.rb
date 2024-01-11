@@ -1,8 +1,11 @@
 FactoryBot.define do
-  factory :card do
+  factory :card, class: 'Card' do
+    sequence(:id, &:to_i)
     title { "MyString" }
     content { "MyString" }
-    position { 1 }
-    kanban_column { nil }
+    kanban_column
+    trait :with_position do
+      position { kanban_column.cards.length.to_i + 1 }
+    end
   end
 end

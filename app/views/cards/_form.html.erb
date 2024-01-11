@@ -1,29 +1,18 @@
-<%= form_with model: @card do |form| %>
-  <div class="relative w-full">
-    <!-- Modal content -->
-    <div class="relative">
-      <!-- Modal header -->
-      <div class="flex items-center justify-between border-b pb-3 rounded-t dark:border-gray-600 mb-5">
-        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-          Create New Task
-        </h3>
-      </div>
-      <!-- Modal body -->
-      <form class="p-4 md:p-5">
-        <div class="grid gap-4 mb-4 grid-cols-2">
-          <div class="col-span-2">
-            <%= form.label "Task name", for: :title, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-            <%= form.text_field :title, placeholder: "Type task title", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", require: true %>
-          </div>
-          <div class="col-span-2">
-            <%= form.label "Content", for: :content, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-            <%= form.text_area :content, size: "70x4", resize: false, placeholder: "Type task title", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", require: true %>
-          </div>
-          <%= form.number_field :kanban_column_id, value: @kanban.id, hidden: true %>
-          <%#= form.number_field :position, value: @cards.last.position + 2, hidden: true %>
-          <%= form.submit "Create Task", class: "text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 cursor-pointer focus:outline-none" %>
-        </div>
-      </form>
+<div class="w-full mx-auto">
+  <div class="text-xl font-bold mb-6">Create New Task</div>
+  <%= form_with model: card, method: :post, class: "grid gap-4" do |form| %>
+    <div class="space-y-2">
+      <%= form.label "Title", name: :title, class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+      <%= form.text_field :title, class: "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50", placeholder: "Enter card title" %>
     </div>
-  </div>
-<% end %>
+    <div class="space-y-2">
+      <%= form.label "Content", name: :content, class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+      <%= form.text_area :content, class: "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50", placeholder: "Enter card content" %>
+    </div>
+    <%= form.submit "Create Task", class: "cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full" %>
+    <div class="sr-only">
+      <%= form.text_field :position, value: column.cards.length + 1 %>
+      <%= form.text_field :kanban_column_id, value: column.id %>
+    </div>
+  <% end %>
+</div>

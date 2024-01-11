@@ -39,6 +39,7 @@
   >
     <div class="flex justify-start items-start gap-4 mb-3 px-6"
          data-kanban-target="kanbanGroup"
+         data-kanban-id="<%= @kanban.id %>"
     >
       <% @kanban_columns.each do |column| %>
         <div class="flex flex-col">
@@ -47,18 +48,19 @@
           </div>
           <div class="min-w-[28rem] w-[28rem] py-4 "
                data-kanban-target="kanbanColumn"
+               data-kanban-col-id="<%= column.id %>"
           >
-            <% column.cards.sort_by { |card| card.position }.each do |item| %>
+            <% column.cards.sort_by { |card| card.position }.each do |card| %>
               <a href="#"
                  class="block w-full p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                 data-kanban-col-id="<%= item.id %>"
+                 data-kanban-card-id="<%= card.id %>"
                  data-kanban-target="kanbanCard"
               >
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <%= item.title %>
+                  <%= card.title %>
                 </h5>
                 <p class="font-normal text-gray-700 dark:text-gray-400">
-                  <%= item.content %>
+                  <%= card.content %>
                 </p>
               </a>
             <% end %>
@@ -71,7 +73,7 @@
               </button>
             <% end %>
             <%= dialog_content do %>
-              <% render "cards/form" %>
+              <% render "cards/form", card: Card, column: column %>
             <% end %>
           <% end %>
         </div>

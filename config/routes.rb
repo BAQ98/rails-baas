@@ -10,8 +10,15 @@ Rails.application.routes.draw do
 
   resources :accounts
   resource :profile, only: [:show, :update]
+
+  # kanban
   resources :kanbans
+  patch '/kanbans/:id/sort', to: 'kanbans#sort', as: "kanban_sort"
+
+  # kanban column
   resources :kanban_columns
+
+  # card
   resources :cards
 
   root 'home#index'
