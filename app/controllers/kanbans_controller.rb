@@ -16,7 +16,6 @@ class KanbansController < ApplicationController
     @kanbans = Rails.cache.fetch('all_kanbans') do
       Kanban.all
     end
-    
   end
 
   # POST /kanbans or /kanbans.json

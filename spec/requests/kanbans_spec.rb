@@ -56,37 +56,4 @@ RSpec.describe 'Api::KanbansController', type: :request do
       end
     end
   end
-
-  # describe "PATCH /kanbans/sort" do
-  #
-  #   let(:column1) { create(:kanban_column, kanban: kanban) }
-  #   let(:column2) { create(:kanban_column, kanban: kanban) }
-  #   let(:card1) { create(:card, kanban_column: column1) }
-  #   let(:card2) { create(:card, kanban_column: column1) }
-  #   let(:card3) { create(:card, kanban_column: column2) }
-  #
-  #   let(:params) do
-  #     {
-  #       kanban_params: {
-  #         kanbanIds: {
-  #           columns: [
-  #             {
-  #               id: column1.id,
-  #               cardIds: [card3.id, card1.id]
-  #             },
-  #             {
-  #               id: column2.id,
-  #               cardIds: [card2.id]
-  #             }
-  #           ]
-  #         }
-  #       }
-  #     }
-  #   end
-  #
-  #   it "sorts the cards" do
-  #     patch kanban_sort_path(kanban.id), params: params
-  #     expect(response).to have_http_status(:ok)
-  #   end
-  # end
 end

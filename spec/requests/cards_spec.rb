@@ -7,11 +7,12 @@ RSpec.describe "Cards", type: :request do
   let(:auth) { create(:auth) }
   before { sign_in auth }
   let(:kanban) { create(:kanban) }
+  let(:kanban_column) { create(:kanban_column, kanban: kanban) }
+  let(:card) { create(:card, kanban_column: kanban_column) }
 
   describe "POST /create card" do
     context 'create with valid attributes' do
-      let(:kanban_column) { create(:kanban_column, kanban: kanban) }
-      let(:card) { create(:card, kanban_column: kanban_column) }
+
       let(:valid_attributes) {
         {
           title: Faker::App.name,
@@ -20,9 +21,34 @@ RSpec.describe "Cards", type: :request do
           kanban_column_id: kanban_column.id
         }
       }
+
       it 'is successful' do
         post cards_path, params: { card: valid_attributes }, headers: headers
         expect(response).to be_successful
+      end
+    end
+  end
+
+  describe 'DELETE /destroy card' do
+    context 'Delete with existing card' do
+      it 'is successful and redirect' do
+        delete card_path(card.id)
+        expect(response).to have_http_status(302)
+      end
+    end
+  end
+
+  describe 'PATCH /update card' do
+    context 'Update with valid parameters' do
+      let(:valid_attributes) {
+        {
+          title: Faker::App.name,
+          content: Faker::Lorem.paragraph,
+        }
+      }
+      it 'is successful and redirect' do
+        patch card_path(card.id), params: { card: valid_attributes }
+        expect(response).to have_http_status(302)
       end
     end
   end

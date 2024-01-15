@@ -1,4 +1,5 @@
-<div class="mt-8 bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+<%= render 'components/ui/notice' %>
+<div class="mt-16 bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
   <div class="flex justify-between items-start">
     <h2 class="text-2xl font-bold">
       <%= @card.title %>
@@ -118,12 +119,18 @@
       <% end %>
     <% end %>
     <div class="flex space-x-2">
-      <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800">
-        Edit
-      </button>
-      <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800">
-        Delete
-      </button>
+      <%= render_dialog do %>
+        <%= dialog_trigger do %>
+          <%= render_button("Edit", variant: :outline) %>
+        <% end %>
+        <%= render "cards/shared/dialog", card_action: :edit %>
+      <% end %>
+      <%= render_dialog do %>
+        <%= dialog_trigger do %>
+          <%= render_button("Delete", variant: :outline) %>
+        <% end %>
+        <%= render "cards/shared/dialog", card_action: :delete %>
+      <% end %>
     </div>
   </div>
 </div>
