@@ -1,5 +1,6 @@
 class KanbanColumnsController < ApplicationController
   before_action :authenticate_auth!
+  before_action :set_instances, only: %i[ destroy ]
 
   def create
     @kanban_column = KanbanColumn.new(kanban_column_params)
@@ -15,7 +16,24 @@ class KanbanColumnsController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      if @kanban_column.destroy!
+        format.html { redirect_to request.referrer,
+                                  notice: "#{@kanban_column.name} group was deleted!" }
+        format.json { render json: @kanban_column, status: :no_content }
+      else
+        flash[:error] = "#{@kanban_column.name} couldn't delete. Something went wrong!"
+        format.json { render json: @kanban_column.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
+
+  def set_instances
+    @kanban_column = KanbanColumn.find(params[:id])
+  end
 
   def kanban_column_params
     params.require(:kanban_column).permit(:name, :kanban_id)

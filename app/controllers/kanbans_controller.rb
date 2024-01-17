@@ -41,7 +41,8 @@ class KanbansController < ApplicationController
     sorted_cols = JSON.parse(kanban_params["kanbanIds"])["columns"]
     sorted_cols.each do |col|
       col["cardIds"].each do |card_id|
-        Card.find(card_id).update!(
+        @card = Card.find(card_id)
+        @card.update!(
           kanban_column: KanbanColumn.find(col["id"]),
           position: col["cardIds"].find_index(card_id)
         )
