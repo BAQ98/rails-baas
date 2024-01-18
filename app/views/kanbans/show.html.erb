@@ -46,23 +46,26 @@
         <div class="flex flex-col py-1">
           <div class="flex justify-between items-center relative">
             <%= tag.p column.name, class: "font-bold text-base" %>
-            <button
-              data-kanban--column-menu-target="columnMenuButton"
-              data-action="click->kanban--column-menu#toggleColumnMenu click@window->kanban--column-menu#hideColumnMenu touchend@window->kanban--column-menu#hideColumnMenu"
-              data-kanban--column-button-id="<%= column.id %>"
-              class="px-3 py-1 text-xs font-medium text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg"
-              type="button"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
-              </svg>
-            </button>
-            <div data-kanban--column-menu-target="columnMenuPop" data-kanban--column-menu-id="<%= column.id %>" class="hidden absolute z-50 shadow-lg right-0 top-8 rounded-md overflow-hidden p-2 border bg-white">
-              <div class="flex flex-col gap-2 ">
-                <%= render "kanban_columns/shared/dialog", kanban_column: @kanban_column, kanban_column_action: :edit %>
-                <%= link_to "Remove", kanban_column_path(column.id), data: { "turbo-method": :delete }, class: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-red-400 hover:bg-red-200" %>
-              </div>
-            </div>
+            <%= render_popover do %>
+              <%= popover_trigger do %>
+                <button
+                  class="px-3 py-1 text-xs font-medium text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg"
+                  type="button"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="pointer-events-none w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
+                  </svg>
+                </button>
+              <% end %>
+              <%= popover_content do %>
+                <div class="z-50 absolute top-[-0.25rem] right-[-14px] shadow-lg rounded-md overflow-hidden p-2 border bg-white">
+                  <div class="flex flex-col gap-2 ">
+                    <%= render "kanban_columns/shared/dialog", kanban_column: @kanban_column, kanban_column_action: :edit %>
+                    <%= link_to "Remove", kanban_column_path(column.id), data: { "turbo-method": :delete }, class: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-red-400 hover:bg-red-200" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
           <div class="min-w-[28rem] w-[28rem] py-4 "
                data-kanban--card-dragndrop-target="kanbanColumn"
