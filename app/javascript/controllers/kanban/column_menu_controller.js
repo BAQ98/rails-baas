@@ -32,7 +32,6 @@ export default class extends Controller {
 
   hideColumnMenu(event, menu) {
     if (event && (menu.contains(event.target) || this.columnMenuButtonTarget.contains(event.target))) {
-      // event.preventDefault(); // I don't remeber why I did it, but i need this line to be commented
       return;
     }
     this.columnMenuPopTarget.classList.add('hidden');
