@@ -1,17 +1,16 @@
 import { Controller } from '@hotwired/stimulus';
-import { patch } from '@rails/request.js';
+import { FetchRequest } from '@rails/request.js';
 import Sortable from 'sortablejs';
-import { Turbo } from '@hotwired/turbo-rails';
 
-// Connects to data-controller="kanban"
+// Connects to data-controller="kanban--card-dragndrop"
 export default class extends Controller {
   static targets = ['kanbanGroup', 'kanbanColumn', 'kanbanCard',
-                    'formSortInput', 'columnMenuPop', 'columnMenuButton'];
+                    'formSortInput'];
 
   initSortable(els) {
     const kanbanPathId = this.kanbanGroupTarget.dataset.kanbanId;
     const updateCardsOrder = async (kanbanIds) => {
-      const request = await new FetchRequest('patch',
+      await new FetchRequest('patch',
         `http://localhost:3000/kanbans/${kanbanPathId}/sort`,
         {
           body: {
@@ -49,9 +48,4 @@ export default class extends Controller {
     this.initSortable(this.kanbanColumnTargets);
   }
 
-  toggleColumnMenu(event) {
-    event.preventDefault();
-    const menu = this.columnMenuPopTarget;
-    const button = this.columnMenuButtonTarget;
-  }
 }
