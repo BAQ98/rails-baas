@@ -20,6 +20,6 @@
   <% end %>
 <% when :edit %>
   <%= dialog_content do %>
-    <% render "cards/shared/form_edit", method: :post, card: @card, column: KanbanColumn.find(@card.kanban_column_id) %>
+    <% render "cards/shared/form_edit", method: :post, card: @card %>
   <% end %>
 <% end %>

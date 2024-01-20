@@ -1,0 +1,12 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+    <button class="flex items-center justify-center w-full p-6 mb-4 border-2 border-dashed rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+      </svg>
+    </button>
+  <% end %>
+  <%= dialog_content do %>
+    <%= render "kanban_columns/shared/form_create", kanban_column: kanban_column %>
+  <% end %>
+<% end %>

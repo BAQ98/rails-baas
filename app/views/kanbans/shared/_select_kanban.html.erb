@@ -1,0 +1,30 @@
+<%= link_to kanbans_path do %>
+  <%= render_button variant: :outline do %>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"/>
+    </svg>
+  <% end %>
+<% end %>
+<% if @kanbans.size != 0 %>
+  <%= render_popover do %>
+    <%= popover_trigger do %>
+      <%= render_button variant: :outline, class: "flex gap-2" do %>
+        <span>
+                Select Project Kanban
+              </span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+        </svg>
+      <% end %>
+    <% end %>
+    <%= popover_content do %>
+      <div class="text-sm text-gray-700 dark:text-gray-200 max-h-48 overflow-y-scroll">
+        <% @kanbans.each do |kanban| %>
+          <%= dropdown_menu_item do %>
+            <%= link_to kanban.name, "/kanbans/#{kanban.id}", class: "block hover:bg-gray-100" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

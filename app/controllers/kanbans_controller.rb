@@ -11,11 +11,9 @@ class KanbansController < ApplicationController
 
   # GET /kanbans/1 or /kanbans/1.json
   def show
+    @kanbans = Kanban.all
     @kanban_columns = KanbanColumn.where(kanban_id: @kanban.id)
     @kanban_column = KanbanColumn.new
-    @kanbans = Rails.cache.fetch('all_kanbans') do
-      Kanban.all
-    end
   end
 
   # POST /kanbans or /kanbans.json

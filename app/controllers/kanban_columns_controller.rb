@@ -1,6 +1,9 @@
 class KanbanColumnsController < ApplicationController
   before_action :authenticate_auth!
-  before_action :set_instances, only: %i[ destroy ]
+  before_action :set_instances, only: %i[ destroy update show ]
+
+  def index
+  end
 
   def create
     @kanban_column = KanbanColumn.new(kanban_column_params)
@@ -8,10 +11,20 @@ class KanbanColumnsController < ApplicationController
       if @kanban_column.save!
         format.html { redirect_to kanban_path(@kanban_column.kanban_id),
                                   notice: "#{@kanban_column.name} was successfully created." }
-        format.json { render json: @kanban_column, status: :created }
       else
         flash[:error] = "#{@kanban_column.name} couldn't created. Something went wrong!"
-        format.json { render json: @kanban_column.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @kanban_column.update!(kanban_column_params)
+    respond_to do |format|
+      if @kanban_column.save!
+        format.html { redirect_to kanban_path(@kanban_column.kanban_id),
+                                  notice: "Group was successfully rename to #{@kanban_column.name}" }
+      else
+        flash[:error] = "#{@kanban_column.name} couldn't rename. Something went wrong!"
       end
     end
   end
@@ -19,14 +32,16 @@ class KanbanColumnsController < ApplicationController
   def destroy
     respond_to do |format|
       if @kanban_column.destroy!
-        format.html { redirect_to request.referrer,
+        format.html { redirect_to kanban_path(@kanban_column.kanban_id),
                                   notice: "#{@kanban_column.name} group was deleted!" }
-        format.json { render json: @kanban_column, status: :no_content }
       else
         flash[:error] = "#{@kanban_column.name} couldn't delete. Something went wrong!"
-        format.json { render json: @kanban_column.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+
   end
 
   private

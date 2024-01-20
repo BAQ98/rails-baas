@@ -8,17 +8,12 @@ RSpec.describe 'Api::KanbansController', type: :request do
   let(:kanban) { create(:kanban) }
   let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
 
-  before do
-    allow(Rails).to receive(:cache).and_return(memory_store)
-    Rails.cache.clear
-  end
-
   before { sign_in auth }
 
   describe 'GET /index' do
     context 'all kanbans exist' do
       it 'is successful' do
-        get kanbans_path, headers: headers
+        get kanbans_path
         expect(response).to be_successful
       end
     end

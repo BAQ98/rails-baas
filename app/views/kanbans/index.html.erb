@@ -27,8 +27,7 @@
   <div class="grid grid-cols-2 md:grid-cols-4 mx-32 mt-16 gap-4">
     <% @kanbans.each do |kanban| %>
       <div class="relative h-48">
-
-        <%= link_to "/kanbans/#{kanban.id}", class: "block p-6 bg-white h-full border border-gray-200 overflow-hidden rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+        <%= link_to kanban_path(kanban), class: "block p-6 bg-white h-full border border-gray-200 overflow-hidden rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             <%= kanban.name %>
           </h5>

@@ -1,35 +1,6 @@
 <section>
   <%= render 'kanbans/shared/kanban_head' do %>
-    <%= link_to kanbans_path do %>
-      <%= render_button variant: :outline do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"/>
-        </svg>
-      <% end %>
-    <% end %>
-    <% if @kanbans.count != 0 %>
-      <%= render_popover do %>
-        <%= popover_trigger do %>
-          <%= render_button variant: :outline, class: "flex gap-2" do %>
-          <span>
-            Select Project Kanban
-          </span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
-            </svg>
-          <% end %>
-        <% end %>
-        <%= popover_content do %>
-          <div class="text-sm text-gray-700 dark:text-gray-200 max-h-48 overflow-y-scroll">
-            <% @kanbans.each do |kanban| %>
-              <%= dropdown_menu_item do %>
-                <%= link_to kanban.name, "/kanbans/#{kanban.id}", class: "block hover:bg-gray-100" %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render "kanbans/shared/select_kanban" %>
   <% end %>
 
   <%= render "components/ui/notice" %>
@@ -42,31 +13,16 @@
          data-kanban-id="<%= @kanban.id %>"
     >
       <% @kanban_columns.each do |column| %>
-        <div class="flex flex-col py-1"
-             data-controller="kanban--column-menu"
-        >
+        <div class="flex flex-col py-1">
           <div class="flex justify-between items-center relative">
             <%= tag.p column.name, class: "font-bold text-base" %>
-            <button
-              class="px-3 py-1 text-xs font-medium text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg"
-              type="button"
-              data-kanban--column-menu-target="button"
-              data-action="click->kanban--column-menu#toggleMenu"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="pointer-events-none w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
-              </svg>
-            </button>
-
-            <div
-              class="z-50 absolute top-8 right-0 shadow-lg rounded-md overflow-hidden p-2 border bg-white hidden"
-              data-kanban--column-menu-target="menu"
-              data-action="click:outside->kanban--column-menu#clickOutside"
-            >
-              <div class="flex flex-col gap-2 ">
-                <%= render "kanban_columns/shared/dialog", kanban_column: @kanban_column, kanban_column_action: :edit %>
-                <%= link_to "Remove", kanban_column_path(column.id), data: { "turbo-method": :delete }, class: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-red-400 hover:bg-red-200" %>
-              </div>
+            <div class="flex items-center gap-2">
+              <%= render "kanban_columns/shared/dialog_edit", column: column %>
+              <%= link_to kanban_column_path(column.id), data: { "turbo-method": :delete }, class: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded hover:bg-red-200" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z"/>
+                </svg>
+              <% end %>
             </div>
           </div>
           <div class="min-w-[28rem] w-[28rem] py-4 "
@@ -102,7 +58,7 @@
           Add another group
         </div>
         <div class="min-w-[28rem] w-[28rem] py-6">
-          <%= render "kanban_columns/shared/dialog", kanban_column: @kanban_column, kanban_column_action: :create %>
+          <%= render "kanban_columns/shared/dialog_create", kanban_column: @kanban_column %>
         </div>
       </div>
     </div>
