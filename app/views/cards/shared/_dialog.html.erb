@@ -20,6 +20,6 @@
   <% end %>
 <% when :edit %>
   <%= dialog_content do %>
-    <% render "cards/shared/form_edit", method: :post, card: @card %>
+    <% render "cards/shared/form", action: :patch, card: @card %>
   <% end %>
 <% end %>

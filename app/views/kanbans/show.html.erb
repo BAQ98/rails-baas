@@ -48,7 +48,7 @@
               </button>
             <% end %>
             <%= dialog_content do %>
-              <%= render "cards/shared/form_create", card: Card, column: column %>
+              <%= render "cards/shared/form", card: Card, column: column, action: :post %>
             <% end %>
           <% end %>
         </div>
