@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class KanbansController < ApplicationController
   before_action :authenticate_auth!
-  before_action :set_kanban, only: %i[ show sort ]
+  before_action :set_kanban, only: %i[ show sort destroy update ]
 
   # GET /kanbans or /kanbans.json
   def index
@@ -11,7 +11,9 @@ class KanbansController < ApplicationController
 
   # GET /kanbans/1 or /kanbans/1.json
   def show
-    @kanbans = Kanban.all
+    @kanbans = Rails.cache.fetch('all_kanbans') do
+      Kanban.all
+    end
     @kanban_columns = KanbanColumn.where(kanban_id: @kanban.id)
     @kanban_column = KanbanColumn.new
   end
@@ -32,18 +34,38 @@ class KanbansController < ApplicationController
 
   # DELETE /kanbans/1 or /kanbans/1.json
   def destroy
-    @kanban.destroy!
+    respond_to do |format|
+      if @kanban.destroy!
+        format.html { redirect_to kanbans_path, notice: "#{@kanban.name} was delete!." }
+        format.json { render json: @kanban, status: :no_content }
+      else
+        flash[:error] = "#{@kanban.name} couldn't delete. Something went wrong!"
+        format.json { render json: @kanban.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def sort
-    sorted_cols = JSON.parse(kanban_params["kanbanIds"])["columns"]
+    sorted_cols = JSON.parse(kanban_params['kanbanIds'])['columns']
     sorted_cols.each do |col|
-      col["cardIds"].each do |card_id|
+      col['cardIds'].each do |card_id|
         @card = Card.find(card_id)
         @card.update!(
-          kanban_column: KanbanColumn.find(col["id"]),
-          position: col["cardIds"].find_index(card_id)
+          kanban_column: KanbanColumn.find(col['id']),
+          position: col['cardIds'].find_index(card_id)
         )
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @kanban.update(kanban_params)
+        format.html { redirect_to kanbans_path, notice: "#{@kanban.name} was updated!" }
+        format.json { render json: @kanban, status: :ok }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @kanban.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -51,4 +51,21 @@ RSpec.describe 'Api::KanbansController', type: :request do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the requested kanban' do
+      delete kanban_path(kanban)
+      expect(response).to redirect_to(kanbans_path)
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'updates the requested kanban' do
+      patch kanban_path(kanban),
+            params: { kanban: { name: 'New Name', description: "New DESC" } }
+      kanban.reload
+      expect(kanban.name).to eq 'New Name'
+      expect(response).to redirect_to(kanbans_path)
+    end
+  end
 end
