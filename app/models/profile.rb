@@ -9,6 +9,9 @@ class Profile < ApplicationRecord
             size: { less_than: 1.megabyte, message: 'Picture is too large' },
             content_type: { in: [:png, :jpeg, :jpg], message: 'Must be PNG, JPEG' }
   has_many :kanbans
+  has_many :card_profiles
+  has_many :authored_cards, through: :card_profiles, source: :card
+  has_many :assigned_cards, through: :card_profiles, source: :card
 
   def self.with_auth
     includes(:auth).where.not(auths: { id: nil })
