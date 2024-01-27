@@ -21,7 +21,7 @@ class KanbansController < ApplicationController
   # POST /kanbans or /kanbans.json
   def create
     profile = Profile.with_auth.find_by(auths: { email: current_auth.email })
-    @kanban = Kanban.new(kanban_params.merge(profile_id: profile.id))
+    @kanban = Kanban.new(kanban_params.merge(author: profile))
     respond_to do |format|
       if @kanban.save!
         format.html { redirect_to kanbans_path, notice: "#{@kanban.name} was successfully created." }
@@ -78,6 +78,6 @@ class KanbansController < ApplicationController
   end
 
   def kanban_params
-    params.require(:kanban).permit(:name, :description, :profile_id, :kanbanIds)
+    params.require(:kanban).permit(:name, :description, :kanbanIds)
   end
 end

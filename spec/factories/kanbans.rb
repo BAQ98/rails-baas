@@ -5,6 +5,6 @@ FactoryBot.define do
     sequence(:id, &:to_i)
     sequence(:name) { |i| "#{Faker::Name.name} #{i}" }
     description { Faker::Lorem.paragraph(sentence_count: 3) }
-    association :profile
+    association :author, factory: :author
   end
 end

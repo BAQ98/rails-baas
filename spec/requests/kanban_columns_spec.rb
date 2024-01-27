@@ -6,7 +6,8 @@ RSpec.describe "Api::KanbanColumns", type: :request do
   end
   let(:auth) { create(:auth) }
   before { sign_in auth }
-  let(:kanban) { create(:kanban) }
+  let(:profile) { create(:profile, auth: auth) }
+  let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
   let(:kanban_column) { create(:kanban_column, kanban: kanban) }
 
   let(:valid_attributes) {

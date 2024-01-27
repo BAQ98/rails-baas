@@ -6,13 +6,13 @@ RSpec.describe "Cards", type: :request do
   end
   let(:auth) { create(:auth) }
   before { sign_in auth }
-  let(:kanban) { create(:kanban) }
+  let(:profile) { create(:profile, auth: auth) }
+  let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
   let(:kanban_column) { create(:kanban_column, kanban: kanban) }
   let(:card) { create(:card, kanban_column: kanban_column) }
 
   describe "POST /create card" do
     context 'create with valid attributes' do
-
       let(:valid_attributes) {
         {
           title: Faker::App.name,

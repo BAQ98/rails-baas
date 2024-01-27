@@ -54,7 +54,7 @@
           </p>
           <span class="mt-1 text-gray-500 text-xs">
             Created by:
-            <%= link_to "#{kanban.profile&.username.present? ? kanban.profile.username : kanban.profile&.auth&.email}", account_path(kanban.profile&.auth&.id), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            <%= link_to "#{kanban.author&.username.present? ? kanban.author.username : kanban.author&.auth&.email}", account_path(kanban.author.id), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
           </span>
         </div>
         <div class=" flex justify-between">

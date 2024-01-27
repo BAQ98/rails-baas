@@ -5,11 +5,11 @@ RSpec.describe 'Api::KanbansController', type: :request do
     { 'ACCEPT' => 'application/json' }
   end
   let(:auth) { create(:auth) }
-  let(:profile) { create(:profile, auth: auth) }
-  let(:kanban) { create(:kanban, profile: profile) }
-  let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
-
   before { sign_in auth }
+  let(:profile) { create(:profile, auth: auth) }
+
+  let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
+  let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
 
   describe 'GET /index' do
     context 'all kanbans exist' do

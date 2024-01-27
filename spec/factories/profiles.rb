@@ -9,4 +9,8 @@ FactoryBot.define do
     skills { [Faker::Job.key_skill, Faker::Job.key_skill, Faker::Job.key_skill] }
     association :auth
   end
+
+  factory :author, class: 'Profile' do
+    sequence(:id, &:to_i)
+  end
 end

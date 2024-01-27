@@ -25,7 +25,7 @@ Kanban.destroy_all
 my_kanban = Kanban.create(
   name: 'New Lamborgucci project',
   description: 'Project to build the most esthetically car ever made.',
-  profile_id: Profile.first.id
+  author: Profile.first
 )
 backlog = KanbanColumn.create(
   name: 'Backlog',
