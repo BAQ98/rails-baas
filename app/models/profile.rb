@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   validates :avatar,
             size: { less_than: 1.megabyte, message: 'Picture is too large' },
             content_type: { in: [:png, :jpeg, :jpg], message: 'Must be PNG, JPEG' }
+  has_many :kanbans
 
   def self.with_auth
     includes(:auth).where.not(auths: { id: nil })

@@ -20,8 +20,8 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:auth_id, :name, :username, :position, :avatar, skills: []).tap { |p|
-      p[:skills].reject!(&:empty?)
-    }
+    params.require(:profile).permit(:auth_id, :name, :username, :position, :avatar, skills: []) do |p|
+      p[:skills] = p[:skills].reject(&:empty?) if p[:skills].present?
+    end
   end
 end

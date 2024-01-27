@@ -5,7 +5,8 @@ RSpec.describe 'Api::KanbansController', type: :request do
     { 'ACCEPT' => 'application/json' }
   end
   let(:auth) { create(:auth) }
-  let(:kanban) { create(:kanban) }
+  let(:profile) { create(:profile, auth: auth) }
+  let(:kanban) { create(:kanban, profile: profile) }
   let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
 
   before { sign_in auth }
@@ -22,21 +23,22 @@ RSpec.describe 'Api::KanbansController', type: :request do
   describe 'POST /create' do
     let(:valid_attributes) {
       {
-        name: "My Kanban",
-        description: "A kanban board"
+        name: 'My Kanban',
+        description: 'A kanban board',
+        profile_id: profile.id
       }
     }
     context 'with valid parameters' do
       it 'creates a new Kanban' do
-        post kanbans_path, params: { kanban: valid_attributes },
-             headers: headers
+        post(kanbans_path, params: { kanban: valid_attributes },
+             headers:)
         expect(response).to have_http_status(:created)
         kanban = Kanban.last
-        expect(kanban.name).to eq("My Kanban")
-        expect(kanban.description).to eq("A kanban board")
+        expect(kanban.name).to eq('My Kanban')
+        expect(kanban.description).to eq('A kanban board')
       end
-      it "renders errors for invalid params" do
-        post kanbans_path, params: {}, headers: headers
+      it 'renders errors for invalid params' do
+        post(kanbans_path, params: {}, headers:)
         expect(response).to have_http_status(:bad_request)
       end
     end
@@ -62,7 +64,7 @@ RSpec.describe 'Api::KanbansController', type: :request do
   describe 'PATCH #update' do
     it 'updates the requested kanban' do
       patch kanban_path(kanban),
-            params: { kanban: { name: 'New Name', description: "New DESC" } }
+            params: { kanban: { name: 'New Name', description: 'New DESC' } }
       kanban.reload
       expect(kanban.name).to eq 'New Name'
       expect(response).to redirect_to(kanbans_path)

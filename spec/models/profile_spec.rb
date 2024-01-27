@@ -6,6 +6,7 @@ RSpec.describe Profile, type: :model do
 
   it { should belong_to(:auth) }
   it { should validate_uniqueness_of(:username) }
+  it { should have_many(:kanbans) }
 
   it 'should include auth' do
     expect(profile.auth.email).to be_truthy
