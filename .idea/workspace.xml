@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: init join table for card and profile">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="fix: rollback migrate to add profile to column, create author references">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/card.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/card.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/card_profile.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/kanban.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kanban.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/profile.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/profile.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240126154913_add_profile_to_kanbans.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240127101025_create_join_table_card_profile.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/factories/kanbans.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/kanbans.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/factories/profiles.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/profiles.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/models/kanban_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/kanban_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/cards_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/cards_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/kanban_columns_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/kanban_columns_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/kanbans_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/kanbans_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/card_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/card_spec.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +266,7 @@
       <workItem from="1706281448803" duration="2834000" />
       <workItem from="1706319363593" duration="16126000" />
       <workItem from="1706353817787" duration="566000" />
-      <workItem from="1706359897666" duration="6464000" />
+      <workItem from="1706359897666" duration="6882000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -299,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706350745989</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: rollback migrate to add profile to column, create author references">
+      <option name="closed" value="true" />
+      <created>1706373213997</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706373213997</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +301,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: profile association for kanban" />
     <MESSAGE value="feat: init join table for card and profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: init join table for card and profile" />
+    <MESSAGE value="fix: rollback migrate to add profile to column, create author references" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: rollback migrate to add profile to column, create author references" />
   </component>
 </project>
