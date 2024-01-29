@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 class KanbansController < ApplicationController
   before_action :authenticate_auth!
-  before_action :set_kanban, only: %i[ show sort destroy update ]
-
+  before_action :set_kanban, only: %i[ show sort destroy update add_assignees ]
   # GET /kanbans or /kanbans.json
   def index
     @kanbans = Kanban.all
@@ -11,9 +10,11 @@ class KanbansController < ApplicationController
 
   # GET /kanbans/1 or /kanbans/1.json
   def show
-    @kanbans = Rails.cache.fetch('all_kanbans') do
-      Kanban.all
+    @auths = Rails.cache.fetch('all_accounts') { Auth.all }
+    @auth_options = @auths.map do |auth|
+      { value: auth.id, name: auth.email }
     end
+    @kanbans = Rails.cache.fetch('all_kanbans') { Kanban.all }
     @kanban_columns = KanbanColumn.where(kanban_id: @kanban.id)
     @kanban_column = KanbanColumn.new
   end
@@ -71,6 +72,16 @@ class KanbansController < ApplicationController
     end
   end
 
+  def add_assignees(profiles)
+    if @kanban.author_id == current_auth.id
+      profiles.each do |profile|
+        @kanban.assingees.create(profile:)
+      end
+    else
+
+    end
+  end
+
   private
 
   def set_kanban
@@ -78,6 +89,6 @@ class KanbansController < ApplicationController
   end
 
   def kanban_params
-    params.require(:kanban).permit(:name, :description, :kanbanIds)
+    params.require(:kanban).permit(:name, :author, :description, :kanbanIds)
   end
 end

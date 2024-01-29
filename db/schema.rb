@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_151632) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_28_034422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_151632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kanban_column_id"], name: "index_cards_on_kanban_column_id"
+  end
+
+  create_table "kanban_assignees", id: false, force: :cascade do |t|
+    t.bigint "kanban_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kanban_id", "profile_id"], name: "index_kanban_assignees_on_kanban_id_and_profile_id"
   end
 
   create_table "kanban_columns", force: :cascade do |t|

@@ -10,6 +10,10 @@ class Profile < ApplicationRecord
             content_type: { in: [:png, :jpeg, :jpg], message: 'Must be PNG, JPEG' }
   has_many :kanbans, foreign_key: :author_id
 
+  # assignees kanban
+  has_many :kanban_assignees
+  has_many :kanbans, through: :kanban_assignees
+
   def self.with_auth
     includes(:auth).where.not(auths: { id: nil })
   end

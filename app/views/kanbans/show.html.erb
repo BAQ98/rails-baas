@@ -2,8 +2,18 @@
   <%= render 'kanbans/shared/kanban_head' do %>
     <%= render "kanbans/shared/select_kanban" %>
   <% end %>
-
+  
   <%= render "components/ui/notice" %>
+
+  <div class="flex flex-col">
+    <% items = [{ :value => "Ruby on Rails", name: "Ruby on Rails" }, { :value => "Next.js", name: "Next.js" }, { :value => "Remix.run", name: "Remix.run" }] %>
+
+    <%= render_combobox items do %>
+      <%= combobox_trigger do %>
+        Select framework
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="overflow-x-scroll min-h-[80vh] mt-16"
        data-controller="kanban--card-dragndrop"

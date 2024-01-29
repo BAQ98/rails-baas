@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="fix: rollback migrate to add profile to column, create author references">
+      <change afterPath="$PROJECT_DIR$/app/models/kanban_assignee.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/components/ui/_list.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/models/card_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/card_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/components/popover_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/components/popover_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/ui/popover_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/ui/popover_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/kanban.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kanban.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/profile.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/profile.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/partial/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/partial/_header.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_popover.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/ui/_popover.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +61,14 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
     &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;two.files.diff.last.used.folder&quot;: &quot;//wsl.localhost/Ubuntu/home/baoquocho/rails-baas&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
   <component name="RunManager" selected="Rails.rails-baas">
@@ -267,6 +283,8 @@
       <workItem from="1706319363593" duration="16126000" />
       <workItem from="1706353817787" duration="566000" />
       <workItem from="1706359897666" duration="6882000" />
+      <workItem from="1706408516341" duration="14176000" />
+      <workItem from="1706493435660" duration="6300000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -292,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706373213997</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix: rollback migrate to add profile to column, create author references">
+      <option name="closed" value="true" />
+      <created>1706408728306</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706408728306</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

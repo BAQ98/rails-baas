@@ -33,7 +33,7 @@
         <!-- Profile dropdown -->
         <div class="relative ml-3">
           <% if auth_signed_in? %>
-            <%= render_header_popover do %>
+            <%= render "components/ui/header_popover" do %>
               <%= popover_trigger do %>
                 <%= render_button text: current_auth.email, variant: :outline %>
               <% end %>
