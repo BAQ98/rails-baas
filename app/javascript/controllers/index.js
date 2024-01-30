@@ -7,11 +7,8 @@ import { application } from "./application"
 import Kanban__CardDragndropController from "./kanban/card_dragndrop_controller"
 application.register("kanban--card-dragndrop", Kanban__CardDragndropController)
 
-import Kanban__ColumnMenuController from "./kanban/column_menu_controller"
-application.register("kanban--column-menu", Kanban__ColumnMenuController)
-
-import Kanban__FilterGroupController from "./kanban/filter_group_controller"
-application.register("kanban--filter-group", Kanban__FilterGroupController)
+import Kanban__SelectAssigneeController from "./kanban/select_assignee_controller"
+application.register("kanban--select-assignee", Kanban__SelectAssigneeController)
 
 import ProfileController from "./profile_controller"
 application.register("profile", ProfileController)
