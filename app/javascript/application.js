@@ -4,4 +4,3 @@ import '@hotwired/turbo-rails';
 import 'controllers';
 import 'sortablejs';
 import '@rails/request.js';
-

@@ -4,20 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="fix: rollback migrate to add profile to column, create author references">
-      <change afterPath="$PROJECT_DIR$/app/models/kanban_assignee.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/ui/_list.html.erb" afterDir="false" />
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: init view for add assignees">
+      <change afterPath="$PROJECT_DIR$/app/views/kanbans/_filter_group.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rails-baas.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rails-baas.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/components/popover_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/components/popover_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/ui/popover_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/ui/popover_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/kanban.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kanban.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/profile.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/profile.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/cards_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/components/card_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/components/combobox_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/components/filter_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/ui/filter_controller.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/components/partial/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/partial/_header.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_popover.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/ui/_popover.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_card.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_combobox.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_filter.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_list.html.erb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/importmap.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +82,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu\home\baoquocho\rails-baas\app\javascript\controllers\kanban" />
+    </key>
+  </component>
   <component name="RunManager" selected="Rails.rails-baas">
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file enabled="true" id="RUBY_CUCUMBER" />
@@ -284,7 +300,9 @@
       <workItem from="1706353817787" duration="566000" />
       <workItem from="1706359897666" duration="6882000" />
       <workItem from="1706408516341" duration="14176000" />
-      <workItem from="1706493435660" duration="6300000" />
+      <workItem from="1706493435660" duration="17373000" />
+      <workItem from="1706541263000" duration="3433000" />
+      <workItem from="1706577569613" duration="6538000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -318,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706408728306</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: init view for add assignees">
+      <option name="closed" value="true" />
+      <created>1706500423804</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706500423804</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,6 +354,7 @@
     <MESSAGE value="feat: profile association for kanban" />
     <MESSAGE value="feat: init join table for card and profile" />
     <MESSAGE value="fix: rollback migrate to add profile to column, create author references" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: rollback migrate to add profile to column, create author references" />
+    <MESSAGE value="feat: init view for add assignees" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: init view for add assignees" />
   </component>
 </project>

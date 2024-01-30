@@ -1,0 +1,46 @@
+<%= render_popover do %>
+  <%= popover_trigger do %>
+    <button
+      class="inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+      type="button"
+    >
+      Select Group
+      <svg
+        class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </button>
+  <% end %>
+  <%= popover_content do %>
+    <div class="absolute top-0 left-[-60px] z-10 w-56 p-3 bg-white rounded-lg border shadow-lg">
+      <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
+        Group name
+      </h6>
+      <ul class="space-y-2 text-sm"
+          aria-labelledby="dropdownDefault"
+      >
+        <%# form %>
+        <% if @kanban_columns.size === 0 %>
+        <span>
+          no group
+        </span>
+        <% else %>
+          <% @kanban_columns.each do |kanban_column| %>
+            <li class="flex items-center cursor-pointer">
+              <input id="<%= "#{kanban_column.name}#{kanban_column.id}" %>" type="checkbox"
+                     value="
+                   <%= kanban_column.id %>"
+                     class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 cursor-pointer"
+                />
+              <label for="<%= "#{kanban_column.name}#{kanban_column.id}" %>" class="ml-2 text-sm font-medium text-gray-900 cursor-pointer">
+                <%= kanban_column.name %>
+              </label>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,50 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+    <button
+      class="inline-flex gap-2 items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2"
+      type="button"
+    >
+      Assign User
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"/>
+      </svg>
+    </button>
+  <% end %>
+
+  <%= dialog_content do %>
+    <div class="flex flex-col gap-4 overflow-y-scroll max-h-[320px]">
+      <% @accounts.each do |account| %>
+        <div class="flex items-center gap-3">
+          <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <% if account.avatar.representable? %>
+              <img class="w-10 h-10 rounded-full" src="<%= account.avatar %>" alt="Rounded avatar">
+            <% else %>
+              <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+              </svg>
+            <% end %>
+          </div>
+          <div class="grid gap-0.5 text-xs">
+            <% if account.name %>
+              <div class="font-medium">
+                <%= account.name %>
+              </div>
+            <% end %>
+            <div class="text-gray-500 dark:text-gray-400">
+              <%= account.auth.email %>
+            </div>
+          </div>
+          <button class="ml-auto mr-3 hover:text-red-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group:hover:text-red-50">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z"/>
+            </svg>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <form class="flex space-x-2 pt-4">
+      <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-lg flex-1" placeholder="Enter email addresses separated by commas" type="email">
+      <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" type="submit">Add</button>
+    </form>
+  <% end %>
+<% end %>

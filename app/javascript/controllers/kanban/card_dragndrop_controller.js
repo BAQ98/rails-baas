@@ -7,11 +7,15 @@ export default class extends Controller {
   static targets = ['kanbanGroup', 'kanbanColumn', 'kanbanCard',
                     'formSortInput'];
 
+  connect() {
+    console.log('things');
+  }
+
   initSortable(els) {
     const kanbanPathId = this.kanbanGroupTarget.dataset.kanbanId;
     const updateCardsOrder = async (kanbanIds) => {
       await new FetchRequest('patch',
-        `http://localhost:3000/kanbans/${kanbanPathId}/sort`,
+        `http://127.0.0.1:3000/kanbans/${kanbanPathId}/sort`,
         {
           body: {
             kanban: {
