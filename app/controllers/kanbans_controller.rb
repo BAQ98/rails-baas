@@ -11,9 +11,6 @@ class KanbansController < ApplicationController
   # GET /kanbans/1 or /kanbans/1.json
   def show
     @accounts = Rails.cache.fetch('all_accounts') { Profile.with_auth }
-    # @account_options = @accounts.map do |account|
-    #   { value: account.id, name: account.email }
-    # end
     @kanbans = Rails.cache.fetch('all_kanbans') { Kanban.all }
     @kanban_columns = KanbanColumn.where(kanban_id: @kanban.id)
     @kanban_column = KanbanColumn.new

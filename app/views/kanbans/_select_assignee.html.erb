@@ -12,45 +12,79 @@
   <% end %>
 
   <%= dialog_content do %>
+
     <section data-controller="kanban--select-assignee">
-      <div class="flex space-x-2 mb-6 mt-4">
-        <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-lg flex-1" placeholder="Enter email addresses" type="email">
-        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" type="submit">Add</button>
-      </div>
-      <div class="flex flex-col gap-4 overflow-y-scroll max-h-[320px]">
-        <% @accounts.each do |account| %>
-          <div class="flex items-center gap-3">
-            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-              <% if account.avatar.representable? %>
-                <img class="w-10 h-10 rounded-full" src="<%= account.avatar %>" alt="Rounded avatar">
-              <% else %>
-                <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                </svg>
-              <% end %>
-            </div>
-            <div class="grid gap-0.5 text-xs">
-              <% if account.name %>
-                <div class="font-medium">
-                  <%= account.name %>
-                </div>
-              <% end %>
-              <div class="text-gray-500 dark:text-gray-400">
-                <%= account.auth.email %>
+      <%= form_with url: '' do |form| %>
+        <div class="flex" data-kanban--select-assignee-target="selection">
+        </div>
+        <label for="select-assignee-input"></label>
+        <div class="flex space-x-2 mt-4">
+          <input
+            id="select-assignee-input"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-lg flex-1"
+            placeholder="Enter email addresses"
+            type="email"
+            data-kanban--select-assignee-target="input"
+          >
+        </div>
+        <div class="flex flex-col gap-4 overflow-y-scroll max-h-[280px] py-2"
+             data-kanban--select-assignee-target="list"
+        >
+          <% @accounts.each do |account| %>
+            <div class="flex items-center gap-3"
+                 data-kanban--select-assignee-target="item"
+                 data-item-account-id="<%= account.id %>"
+            >
+              <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <% if account.avatar.representable? %>
+                  <img class="w-10 h-10 rounded-full" src="<%= account.avatar %>" alt="Rounded avatar">
+                <% else %>
+                  <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                  </svg>
+                <% end %>
               </div>
+              <div class="grid gap-0.5 text-xs">
+                <% if account.name %>
+                  <div class="font-medium">
+                    <%= account.name %>
+                  </div>
+                <% end %>
+                <div class="text-gray-500 dark:text-gray-400">
+                  <%= account.auth.email %>
+                </div>
+              </div>
+              <button
+                data-kanban--select-assignee-target="itemButton"
+                data-item-button-id="<%= account.id %>"
+                data-action="click->kanban--select-assignee#select"
+                data-item-is-add="false"
+                class="ml-auto mr-3 group"
+                type="button"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-red-700">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-500 group-hover:text-green-700 hidden">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
+              </button>
             </div>
-            <button class="ml-auto mr-3 hover:text-red-700">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-              </svg>
-            </button>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
 
-      <div class="flex">
-
-      </div>
-    </section>
+        <button
+          class="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          type="button"
+          data-action="click->kanban--select-assignee#save"
+        >
+          Save
+        </button>
+        </section>
+      <% end %>
   <% end %>
 <% end %>
+
+<template id="assigneeInput">
+  <input type="text" multiple="multiple" hidden name="kanban_assignee[assignees][]"/>
+</template>

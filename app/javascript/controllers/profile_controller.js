@@ -1,7 +1,7 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ["skillTags", "skillInput"];
+  static targets = ['skillTags', 'skillInput'];
 
   connect() {}
 
@@ -10,8 +10,8 @@ export default class extends Controller {
   }
 
   getElement() {
-    const tagListItemTemplateId = this.data.get("tagListItemTemplateId");
-    const tagEmptyTemplateId = this.data.get("tagEmptyTemplateId");
+    const tagListItemTemplateId = this.data.get('tagListItemTemplateId');
+    const tagEmptyTemplateId = this.data.get('tagEmptyTemplateId');
 
     const cloneNodeTemplate = (templateId) => {
       return document.getElementById(templateId).content.cloneNode(true);
@@ -19,19 +19,18 @@ export default class extends Controller {
 
     return {
       skillTagListItemClone: cloneNodeTemplate(tagListItemTemplateId),
-      skillTagEmptyClone: cloneNodeTemplate(tagEmptyTemplateId),
+      skillTagEmptyClone: cloneNodeTemplate(tagEmptyTemplateId)
     };
   }
 
   isValidValue() {
-    if (this.skillInputTarget.value === "") return false;
-    if (this.skills.some((item) => item === this.skillInputTarget.value))
-      return false;
-    return true;
+    if (this.skillInputTarget.value === '') return false;
+    return !this.skills.some((item) => item === this.skillInputTarget.value);
+
   }
 
   clickToRemoveTag(e) {
-    const tagElement = e.target.closest("li");
+    const tagElement = e.target.closest('li');
     tagElement.remove();
     const index = this.skills.indexOf(e.currentTarget.dataset.value);
     if (index > -1) {
@@ -44,8 +43,8 @@ export default class extends Controller {
   }
 
   backspaceToRemoveTag(e) {
-    const lastLi = this.skillTagsTarget.querySelector("li:last-child");
-    if (e.key === "Backspace" && this.skillInputTarget.value === "" && lastLi) {
+    const lastLi = this.skillTagsTarget.querySelector('li:last-child');
+    if (e.key === 'Backspace' && this.skillInputTarget.value === '' && lastLi) {
       this.skills.pop();
       lastLi.remove();
       if (this.skills.length === 0) {
@@ -59,24 +58,24 @@ export default class extends Controller {
     e.stopImmediatePropagation();
 
     const emptyInput = this.skillTagsTarget.querySelector(
-      '[data-input="empty"]',
+      '[data-input="empty"]'
     );
 
     if (emptyInput) emptyInput.remove();
 
     if (this.isValidValue()) {
       const { skillTagEmptyClone, skillTagListItemClone } = this.getElement();
-      const span = skillTagListItemClone.querySelector("span");
-      const input = skillTagListItemClone.querySelector("input");
-      const button = skillTagListItemClone.querySelector("button");
+      const span = skillTagListItemClone.querySelector('span');
+      const input = skillTagListItemClone.querySelector('input');
+      const button = skillTagListItemClone.querySelector('button');
 
       span.textContent = this.skillInputTarget.value;
-      input.setAttribute("value", this.skillInputTarget.value);
+      input.setAttribute('value', this.skillInputTarget.value);
       button.dataset.value = this.skillInputTarget.value;
 
       this.skills.push(this.skillInputTarget.value);
       this.skillTagsTarget.appendChild(skillTagListItemClone);
-      this.skillInputTarget.value = "";
+      this.skillInputTarget.value = '';
     }
     console.log(this.skills);
   }
