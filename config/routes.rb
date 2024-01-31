@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :auths, only: :show
     get '/auths_by_email', to: 'auths_by_emails#show', as: :auths_by_email
+    post '/kanban_assignee', to: 'kanban_assignee#create', as: :kanban_assignee
   end
 
   resources :accounts

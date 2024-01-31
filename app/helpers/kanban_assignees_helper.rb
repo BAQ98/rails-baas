@@ -1,0 +1,2 @@
+module KanbanAssigneesHelper
+end

@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import { post } from '@rails/request.js';
 
 // Connects to data-controller="kanban--select-assignee"
 export default class extends Controller {
@@ -12,9 +13,9 @@ export default class extends Controller {
   }
 
   select(e) {
+    let isAdded = Boolean(e.currentTarget.dataset.itemIsAdd !== 'false');
     const toggleButtonAdd = (e) => {
-      const isAdded = Boolean(e.currentTarget.dataset.isAdded);
-      e.currentTarget.dataset.isAdded = String(!isAdded);
+      e.currentTarget.dataset.itemIsAdd = String(!isAdded);
       e.currentTarget.firstElementChild.classList.toggle('hidden');
       e.currentTarget.lastElementChild.classList.toggle('hidden');
     };
@@ -25,21 +26,35 @@ export default class extends Controller {
         .cloneNode(true)
         .querySelector('input');
       assigneeInput.setAttribute('value', value);
+      assigneeInput.setAttribute('data-selection-id', value);
       this.selectionTarget.appendChild(assigneeInput);
-      toggleButtonAdd(e);
     };
 
-    this.itemTargets.forEach((item, index) => {
-      if (item.dataset.itemAccountId === e.currentTarget.dataset.itemButtonId) {
-        if (index > -1) {
-          addSelection(item.dataset.itemAccountId);
-
+    const removeSelection = (e) => {
+      this.selectionTarget.childNodes.forEach(item => {
+        console.log(e.currentTarget);
+        if (item.dataset.selectionId === e.currentTarget.dataset.itemButtonId) {
+          item.remove();
         }
-      }
-    });
+      });
+    };
+
+    if (!isAdded) {
+      this.itemTargets.forEach((item, index) => {
+        if (item.dataset.itemAccountId === e.currentTarget.dataset.itemButtonId) {
+          if (index > -1) {
+            addSelection(item.dataset.itemAccountId);
+            toggleButtonAdd(e);
+          }
+        }
+      });
+    } else {
+      removeSelection(e);
+      toggleButtonAdd(e);
+    }
   }
 
   save() {
-    console.log('send data to db');
+
   }
 }

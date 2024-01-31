@@ -15,8 +15,7 @@
 
     <section data-controller="kanban--select-assignee">
       <%= form_with url: '' do |form| %>
-        <div class="flex" data-kanban--select-assignee-target="selection">
-        </div>
+        <div class="flex" data-kanban--select-assignee-target="selection"></div>
         <label for="select-assignee-input"></label>
         <div class="flex space-x-2 mt-4">
           <input
@@ -72,7 +71,6 @@
             </div>
           <% end %>
         </div>
-
         <button
           class="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
           type="button"

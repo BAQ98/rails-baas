@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: re-structure code file in show.html.erb">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: toggle button add in list user assignee">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/profile_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/profile_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +287,7 @@
       <workItem from="1706596534646" duration="4665000" />
       <workItem from="1706609567394" duration="2369000" />
       <workItem from="1706628829893" duration="2562000" />
-      <workItem from="1706665666619" duration="2970000" />
+      <workItem from="1706665666619" duration="9150000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -346,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706587393910</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: toggle button add in list user assignee">
+      <option name="closed" value="true" />
+      <created>1706668735418</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706668735418</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +365,7 @@
     <MESSAGE value="fix: rollback migrate to add profile to column, create author references" />
     <MESSAGE value="feat: init view for add assignees" />
     <MESSAGE value="feat: re-structure code file in show.html.erb" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: re-structure code file in show.html.erb" />
+    <MESSAGE value="feat: toggle button add in list user assignee" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: toggle button add in list user assignee" />
   </component>
 </project>
