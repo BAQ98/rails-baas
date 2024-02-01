@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finish javascript for kanban assignee controller">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: init client posting kanban_assignees">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/kanban_assignees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanban_assignees_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/helpers/kanban_assignees_helper_spec.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/kanban_assignees_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/kanban_assignees_spec.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +289,7 @@
       <workItem from="1706665666619" duration="11172000" />
       <workItem from="1706691251972" duration="4139000" />
       <workItem from="1706712613140" duration="4434000" />
-      <workItem from="1706751541748" duration="6110000" />
+      <workItem from="1706751541748" duration="7359000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -367,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706678032595</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: init client posting kanban_assignees">
+      <option name="closed" value="true" />
+      <created>1706759700398</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706759700398</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,6 +396,7 @@
     <MESSAGE value="feat: re-structure code file in show.html.erb" />
     <MESSAGE value="feat: toggle button add in list user assignee" />
     <MESSAGE value="feat: finish javascript for kanban assignee controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: finish javascript for kanban assignee controller" />
+    <MESSAGE value="feat: init client posting kanban_assignees" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: init client posting kanban_assignees" />
   </component>
 </project>

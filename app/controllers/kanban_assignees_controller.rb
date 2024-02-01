@@ -7,8 +7,8 @@ class KanbanAssigneesController < ApplicationController
     kanban_assignees = JSON.parse(kanban_assignee_params['assignees_list_in_kanban'])
     respond_to do |format|
       if KanbanAssignee.create!(kanban_assignees)
-        format.html { redirect_to kanban_path(kanban_assignee_params[:kanban_id]),
-                                  notice: "Users assigned successfully." }
+        format.html { redirect_to kanban_path(kanban_assignee_params[:kanban_id]), notice: "Users assigned successfully.",
+                                  status: :found }
         format.json { render json: @kanban, status: :created }
       else
         format.json { render json: @kanban.errors, status: :unprocessable_entity }
@@ -19,6 +19,6 @@ class KanbanAssigneesController < ApplicationController
   private
 
   def kanban_assignee_params
-    params.require(:kanban_assignees).permit(:assignees_list_in_kanban)
+    params.require(:kanban_assignees).permit(:assignees_list_in_kanban, :kanban_id)
   end
 end

@@ -1,5 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
-import { FetchRequest, FetchResponse } from '@rails/request.js';
+import { FetchRequest } from '@rails/request.js';
+import { Turbo } from '@hotwired/turbo-rails';
 
 // Connects to data-controller="kanban--select-assignee"
 export default class extends Controller {
@@ -69,11 +70,15 @@ export default class extends Controller {
       {
         body: {
           kanban_assignees: {
-            assignees_list_in_kanban: JSON.stringify(assignees_list_in_kanban)
+            assignees_list_in_kanban: JSON.stringify(assignees_list_in_kanban),
+            kanban_id: Number(this.selectionTarget.dataset.kanbanId)
           }
         }
       });
-    const response = await request.perform();
-
+    const { response } = await request.perform();
+    console.log(response);
+    if (response.redirected) {
+      Turbo.visit(response.url);
+    }
   }
 }
