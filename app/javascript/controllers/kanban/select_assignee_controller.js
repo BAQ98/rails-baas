@@ -1,9 +1,11 @@
 import { Controller } from '@hotwired/stimulus';
-import { post } from '@rails/request.js';
+import { FetchRequest, FetchResponse } from '@rails/request.js';
 
 // Connects to data-controller="kanban--select-assignee"
 export default class extends Controller {
-  static targets = ['input', 'list', 'item', 'itemButton', 'selection'];
+  static targets = ['input', 'list', 'item',
+                    'itemButton', 'selection',
+                    'selectionInput'];
 
   connect() {
     console.log('kanban--select-assignee connected');
@@ -32,7 +34,6 @@ export default class extends Controller {
 
     const removeSelection = (e) => {
       this.selectionTarget.childNodes.forEach(item => {
-        console.log(e.currentTarget);
         if (item.dataset.selectionId === e.currentTarget.dataset.itemButtonId) {
           item.remove();
         }
@@ -54,7 +55,25 @@ export default class extends Controller {
     }
   }
 
-  save() {
+  async save() {
+    const assignees_list_in_kanban = [];
+    this.selectionInputTargets.forEach(item => {
+      assignees_list_in_kanban.push({
+        kanban_id: Number(this.selectionTarget.dataset.kanbanId),
+        profile_id: Number(item.value)
+      });
+    });
+
+    const request = new FetchRequest('post',
+      `http://127.0.0.1:3000/kanban_assignees`,
+      {
+        body: {
+          kanban_assignees: {
+            assignees_list_in_kanban: JSON.stringify(assignees_list_in_kanban)
+          }
+        }
+      });
+    const response = await request.perform();
 
   }
 }
