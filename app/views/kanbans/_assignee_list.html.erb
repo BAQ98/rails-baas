@@ -1,11 +1,18 @@
 <div class="flex -space-x-4 rtl:space-x-reverse">
-  <%= @assignees.each do |assignee| %>
-    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 border-white rounded-full">
-      <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-      </svg>
-    </div>
+  <% @assignees[0..3].each do |assignee| %>
+    <% if assignee.profile.avatar.presentable? %>
+      <img class="cursor-pointer w-10 h-10 border-2 border-white rounded-full" src="<%= assignee.profile.avatar %>" alt=""/>
+    <% else %>
+      <div class="flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 border-2 border-white rounded-full cursor-pointer">
+        <svg class="w-13 h-13 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+    <% end %>
   <% end %>
-  <a class="relative flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
+  <% if @assignees.size > 4 %>
+    <a class="relative flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">
+      +<%= @assignees.size - 4 %>
+    </a>
+  <% end %>
 </div>
-
