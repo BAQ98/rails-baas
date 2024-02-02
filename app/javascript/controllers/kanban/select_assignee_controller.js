@@ -56,6 +56,10 @@ export default class extends Controller {
     }
   }
 
+  async update() {
+
+  }
+
   async save() {
     const assignees_list_in_kanban = [];
     this.selectionInputTargets.forEach(item => {
@@ -80,5 +84,9 @@ export default class extends Controller {
     if (response.redirected) {
       Turbo.visit(response.url);
     }
+  }
+
+  async handleAssignees() {
+
   }
 }

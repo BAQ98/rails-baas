@@ -14,6 +14,7 @@ class KanbansController < ApplicationController
     @kanbans = Rails.cache.fetch('all_kanbans') { Kanban.all }
     @kanban_columns = KanbanColumn.where(kanban_id: @kanban.id)
     @kanban_column = KanbanColumn.new
+    @assignees = KanbanAssignee.where(kanban_id: @kanban.id)
   end
 
   # POST /kanbans or /kanbans.json
