@@ -14,15 +14,7 @@
   <%= render "components/partial/header" %>
   <%= render "components/partial/sidebar" %>
   <%= render "components/partial/main" %>
-  <% if flash.any? %>
-    <% flash.each do |type, msg| %>
-      <% if type === "alert" || type === "error" %>
-        <%= render_toast header: "#{type} status:", description: "#{msg}", variant: :destructive %>
-      <% else %>
-        <%= render_toast header: "#{type} status:", description: "#{msg}", class: "border border-blue-600" %>
-      <% end %>
-    <% end %>
-  <% end %>
+  <%= render "components/partial/flash", flash: flash %>
 
 </div>
 </body>

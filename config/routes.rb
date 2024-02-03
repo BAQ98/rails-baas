@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     # auth
     resources :auths, only: :show
     get '/auths_by_email', to: 'auths_by_emails#show', as: :auths_by_email
+
+    # kanban_assignee
+    get '/kanban_assignees', to: 'kanban_assignees#get_assignees'
+    post '/kanban_assignees', to: 'kanban_assignees#assign'
+    put '/kanban_assignee', to: 'kanban_assignees#reassign'
   end
 
   resources :accounts
@@ -22,9 +27,5 @@ Rails.application.routes.draw do
   # card
   resources :cards
 
-  # kanban_assignee
-  post '/kanban_assignees', to: 'kanban_assignees#assign'
-  put '/kanban_assignees', to: 'kanban_assignees#reassign'
-  
   root 'home#index'
 end

@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { FetchRequest } from '@rails/request.js';
+import { get } from '@rails/request.js';
 import { Turbo } from '@hotwired/turbo-rails';
 
 // Connects to data-controller="kanban--select-assignee"
@@ -10,6 +10,18 @@ export default class extends Controller {
 
   connect() {
     console.log('kanban--select-assignee connected');
+    this.getAssignees();
+  }
+
+  getAssignees() {
+    const params = new URLSearchParams();
+    params.append('kanban_id', this.selectionTarget.dataset.kanbanId);
+    console.log(params);
+
+    fetch(`http://127.0.0.1:3000/api/kanban_assignees?${params}`)
+      .then(res => {
+        console.log(res);
+      });
   }
 
   querySearch() {
@@ -70,19 +82,20 @@ export default class extends Controller {
     });
 
     const request = new FetchRequest('post',
-      `http://127.0.0.1:3000/kanban_assignees`,
+      `http://127.0.0.1:3000/api/kanban_assignees`,
       {
         body: {
           kanban_assignees: {
             assignees_list_in_kanban: JSON.stringify(assignees_list_in_kanban),
             kanban_id: Number(this.selectionTarget.dataset.kanbanId)
           }
-        }
+        },
+        responseKind: 'turbo-stream'
       });
     const { response } = await request.perform();
     console.log(response);
-    if (response.redirected) {
-      Turbo.visit(response.url);
+    if (response.ok) {
+      Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
     }
   }
 
