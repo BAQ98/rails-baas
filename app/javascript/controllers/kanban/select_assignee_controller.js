@@ -12,10 +12,10 @@ export default class extends Controller {
 
   connect() {
     console.log('kanban--select-assignee connected');
-    this.getAssignees();
+    this.setAssignees();
   }
 
-  async getAssignees() {
+  async setAssignees() {
     const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
       headers: {
         Accept: 'application/json'
@@ -26,11 +26,36 @@ export default class extends Controller {
     });
 
     this.assigneesListValue = await response.json;
-    console.log(this.assigneesListValue);
+
+    this.assigneesListValue.forEach(item => {
+      // add to list input
+      this.addSelection(null, item.profile_id);
+      // toggle button add if input exist
+
+      this.itemButtonTargets.forEach(ib => {
+        if (Number(ib.dataset.itemButtonId) === item.profile_id) {
+          ib.dataset.itemIsAdd = String(true);
+          ib.firstElementChild.classList.toggle('hidden');
+          ib.lastElementChild.classList.toggle('hidden');
+        }
+      });
+    });
+
   }
 
   querySearch() {
   }
+
+  addSelection(_, value) {
+    const assigneeInput = document
+      .getElementById('assigneeInput')
+      .content
+      .cloneNode(true)
+      .querySelector('input');
+    assigneeInput.setAttribute('value', value);
+    assigneeInput.setAttribute('data-selection-id', value);
+    this.selectionTarget.appendChild(assigneeInput);
+  };
 
   select(e) {
     let isAdded = Boolean(e.currentTarget.dataset.itemIsAdd !== 'false');
@@ -38,16 +63,6 @@ export default class extends Controller {
       e.currentTarget.dataset.itemIsAdd = String(!isAdded);
       e.currentTarget.firstElementChild.classList.toggle('hidden');
       e.currentTarget.lastElementChild.classList.toggle('hidden');
-    };
-    const addSelection = (value) => {
-      const assigneeInput = document
-        .getElementById('assigneeInput')
-        .content
-        .cloneNode(true)
-        .querySelector('input');
-      assigneeInput.setAttribute('value', value);
-      assigneeInput.setAttribute('data-selection-id', value);
-      this.selectionTarget.appendChild(assigneeInput);
     };
 
     const removeSelection = (e) => {
@@ -62,7 +77,7 @@ export default class extends Controller {
       this.itemTargets.forEach((item, index) => {
         if (item.dataset.itemAccountId === e.currentTarget.dataset.itemButtonId) {
           if (index > -1) {
-            addSelection(item.dataset.itemAccountId);
+            this.addSelection(e, item.dataset.itemAccountId);
             toggleButtonAdd(e);
           }
         }
@@ -71,10 +86,6 @@ export default class extends Controller {
       removeSelection(e);
       toggleButtonAdd(e);
     }
-  }
-
-  async update() {
-
   }
 
   async save() {
@@ -104,7 +115,4 @@ export default class extends Controller {
     }
   }
 
-  async handleAssignees() {
-
-  }
 }

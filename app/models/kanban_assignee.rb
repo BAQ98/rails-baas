@@ -2,13 +2,14 @@ class KanbanAssignee < ApplicationRecord
   belongs_to :kanban
   belongs_to :profile
 
-  # def self.add_assignees(kanban_id, profiles)
-  #   profiles.each do |profile|
-  #     KanbanAssignee.create(
-  #       kanban_id: kanban_id,
-  #       profile_id: profile.id
-  #     )
-  #   end
-  # end
+  # validate :profile_not_already_assigned
 
+  # validate duplicate records
+  # def self.create!(assignees)
+  #   assignees.each do |assignee|
+  #     validate_no_duplicate(assignee)
+  #   end
+  #
+  #   super
+  # end
 end
