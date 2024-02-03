@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { get } from '@rails/request.js';
+import { get, FetchRequest } from '@rails/request.js';
 import { Turbo } from '@hotwired/turbo-rails';
 
 // Connects to data-controller="kanban--select-assignee"
@@ -8,20 +8,25 @@ export default class extends Controller {
                     'itemButton', 'selection',
                     'selectionInput'];
 
+  static values = { assigneesList: { type: Array, default: [] } };
+
   connect() {
     console.log('kanban--select-assignee connected');
     this.getAssignees();
   }
 
-  getAssignees() {
-    const params = new URLSearchParams();
-    params.append('kanban_id', this.selectionTarget.dataset.kanbanId);
-    console.log(params);
+  async getAssignees() {
+    const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
+      headers: {
+        Accept: 'application/json'
+      },
+      query: {
+        'kanban_assignees[kanban_id]': this.selectionTarget.dataset.kanbanId
+      }
+    });
 
-    fetch(`http://127.0.0.1:3000/api/kanban_assignees?${params}`)
-      .then(res => {
-        console.log(res);
-      });
+    this.assigneesListValue = await response.json;
+    console.log(this.assigneesListValue);
   }
 
   querySearch() {
