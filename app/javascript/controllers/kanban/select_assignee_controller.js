@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { get, FetchRequest } from '@rails/request.js';
+import { get, post, put } from '@rails/request.js';
 import { Turbo } from '@hotwired/turbo-rails';
 
 // Connects to data-controller="kanban--select-assignee"
@@ -31,7 +31,6 @@ export default class extends Controller {
       // add to list input
       this.addSelection(null, item.profile_id);
       // toggle button add if input exist
-
       this.itemButtonTargets.forEach(ib => {
         if (Number(ib.dataset.itemButtonId) === item.profile_id) {
           ib.dataset.itemIsAdd = String(true);
@@ -41,9 +40,6 @@ export default class extends Controller {
       });
     });
 
-  }
-
-  querySearch() {
   }
 
   addSelection(_, value) {
@@ -89,30 +85,37 @@ export default class extends Controller {
   }
 
   async save() {
-    const assignees_list_in_kanban = [];
+    const assigneesListInKanban = [];
     this.selectionInputTargets.forEach(item => {
-      assignees_list_in_kanban.push({
+      assigneesListInKanban.push({
         kanban_id: Number(this.selectionTarget.dataset.kanbanId),
         profile_id: Number(item.value)
       });
     });
 
-    const request = new FetchRequest('post',
-      `http://127.0.0.1:3000/api/kanban_assignees`,
-      {
-        body: {
-          kanban_assignees: {
-            assignees_list_in_kanban: JSON.stringify(assignees_list_in_kanban),
-            kanban_id: Number(this.selectionTarget.dataset.kanbanId)
-          }
-        },
-        responseKind: 'turbo-stream'
-      });
-    const { response } = await request.perform();
-    console.log(response);
-    if (response.ok) {
+    console.log(assigneesListInKanban.length, this.assigneesListValue.length);
+
+    if (assigneesListInKanban.length === this.assigneesListValue.length) {
       Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      return;
+    }
+
+    if (assigneesListInKanban.length !== this.assigneesListValue.length) {
+      const response = await post(`http://127.0.0.1:3000/api/kanban_assignees/assign`,
+        {
+          headers: {
+            Accept: 'application/json'
+          },
+          body: {
+            kanban_assignees: {
+              assignees_list_in_kanban: JSON.stringify(assigneesListInKanban),
+              kanban_id: Number(this.selectionTarget.dataset.kanbanId)
+            }
+          }
+        });
+      if (response.ok) {
+        Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      }
     }
   }
-
 }
