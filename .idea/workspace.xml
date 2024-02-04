@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: set init data in assignees stimulus controller">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/kanban_assignee.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kanban_assignee.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-    </list>
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: post data in assignees stimulus controller" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -296,7 +290,7 @@
       <workItem from="1706841072370" duration="12199000" />
       <workItem from="1706920977040" duration="13595000" />
       <workItem from="1706969796555" duration="4179000" />
-      <workItem from="1707008072774" duration="9485000" />
+      <workItem from="1707008072774" duration="9615000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -426,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706955293708</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat: post data in assignees stimulus controller">
+      <option name="closed" value="true" />
+      <created>1707020345372</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1707020345372</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +458,7 @@
     <MESSAGE value="feat: init assignees list view" />
     <MESSAGE value="feat: get assignee list in stimulus controller" />
     <MESSAGE value="feat: set init data in assignees stimulus controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: set init data in assignees stimulus controller" />
+    <MESSAGE value="feat: post data in assignees stimulus controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: post data in assignees stimulus controller" />
   </component>
 </project>
