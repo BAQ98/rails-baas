@@ -1,0 +1,70 @@
+<%= render_table class: "w-full table-auto" do %>
+  <%= table_head class: "bg-gray-100 h-14 dark:bg-gray-700 [&>tr]:text-gray-500 [&>tr]:border-b" do %>
+    <%= table_header class: "w-[1%] pl-6 font-medium dark:text-gray-400" do %>
+      <%= render_checkbox name: "no", label: "No." %>
+    <% end %>
+    <%= table_header "ID", class: "w-[2%] whitespace-nowrap" %>
+    <%= table_header "Avatar", class: "w-[10%]" %>
+    <%= table_header "User", class: "w-[20%] px-6 text-left" %>
+    <%= table_header "", class: "ml-auto w-[5%] px-6 text-right" %>
+  <% end %>
+  <%= table_body do %>
+    <% @accounts.each.with_index do |account, i| %>
+      <%= table_row do %>
+        <%= table_column class: "text-center whitespace-nowrap w-[2%] px-6 py-3 font-medium dark:text-gray-400" do %>
+          <%= render_checkbox name: "no", label: "#{i + 1}", class: "w-fit" %>
+        <% end %>
+        <%= table_column class: "text-center px-6 py-3 font-medium dark:text-gray-400" do %>
+          <% account[:id].to_s %>
+        <% end %>
+        <%= table_column class: "text-center px-6 py-3 font-medium dark:text-gray-400" do %>
+          <div class="relative mx-auto w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        <% end %>
+        <%= table_column class: "text-left px-6 py-3 font-medium dark:text-gray-400" do %>
+          <% account.auth[:email] %>
+        <% end %>
+        <%= table_column class: "px-6 py-3 font-medium dark:text-gray-400" do %>
+          <div class="flex items-center justify-end">
+            <%= render_button as: :link, href: "/accounts/#{account[:id]}", class: "p-2 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-transparent rounded-lg hover:bg-transparent hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 active:scale-90 transition-all ease duration-300" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            <% end %>
+            <%= render_alert_dialog do %>
+              <%= alert_dialog_trigger do %>
+                <%= render_button class: "p-2 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-transparent rounded-lg hover:bg-transparent hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 active:scale-90 transition-all ease duration-300" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                <% end %>
+              <% end %>
+              <%= alert_dialog_content do %>
+                <div class="flex flex-col space-y-2 text-center sm:text-left">
+                  <h2 class="text-lg font-semibold">Are you absolutely
+                    sure?</h2>
+                  <p class="text-sm text-muted-foreground">
+                    This action cannot be undone. This will
+                    permanently delete your account and remove your
+                    data
+                    from our servers.
+                  </p>
+                </div>
+                <div class="flex flex-row mt-4 justify-end gap-3">
+                  <%= render_button "Cancel", variant: :outline, data: { action: "click->ui--dialog#close" } %>
+                  <%= link_to account_path(account), data: { turbo_method: :delete } do %>
+                    <%= render_button "Delete", variant: :destructive %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

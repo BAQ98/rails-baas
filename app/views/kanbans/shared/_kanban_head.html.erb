@@ -1,6 +1,25 @@
 <div class="flex justify-between px-5 py-3 items-center bg-white border-b">
   <div class="flex gap-2 flex-1">
-    <%= yield %>
+    <%= render_dialog do %>
+      <%= dialog_trigger do %>
+        <%= render_button("+ Create Kanban", variant: :outline) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+          <span>
+            Create Kanban
+          </span>
+        <% end %>
+      <% end %>
+      <%= dialog_content do %>
+        <div class="mx-auto w-full">
+          <h1 class="mx-auto block uppercase tracking-wide text-gray-700 font-bold text-xl">
+            Create new Kanban Project
+          </h1>
+          <%= render "form_kanban", kanban: @kanban %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <!-- SEARCH BAR-->
