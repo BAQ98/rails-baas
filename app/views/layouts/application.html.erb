@@ -15,7 +15,11 @@
   <%= render "components/partial/sidebar" %>
   <%= render "components/partial/main" %>
   <%= render "components/partial/flash", flash: flash %>
-
+  <%= turbo_frame_tag dom_id: "flash" do %>
+    <%= render "components/partial/flash", flash: flash %>
+  <% end %>
+  <turbo-frame id="flash">
+  </turbo-frame>
 </div>
 </body>
 </html>

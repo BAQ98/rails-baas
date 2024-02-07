@@ -93,15 +93,13 @@ export default class extends Controller {
       });
     });
 
-    console.log(assigneesListInKanban.length, this.assigneesListValue.length);
-
     if (assigneesListInKanban.length === this.assigneesListValue.length) {
       Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
       return;
     }
 
     if (assigneesListInKanban.length !== this.assigneesListValue.length) {
-      const response = await post(`http://127.0.0.1:3000/api/kanban_assignees/assign`,
+      const request = await post(`http://127.0.0.1:3000/api/kanban_assignees/assign`,
         {
           headers: {
             Accept: 'application/json'
@@ -111,11 +109,17 @@ export default class extends Controller {
               assignees_list_in_kanban: JSON.stringify(assigneesListInKanban),
               kanban_id: Number(this.selectionTarget.dataset.kanbanId)
             }
-          }
+          },
+          responseKind: 'turbo-stream'
         });
-      if (response.ok) {
-        Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
-      }
+
+      console.log(request);
+
+      // const result = await response;
+
+      // if (result.status === 201) {
+      //   Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      // }
     }
   }
 }

@@ -3,6 +3,7 @@
 module Api
   class KanbanAssigneesController < ApplicationController
     before_action :authenticate_auth!
+    before_action :validates_kanban_author, only: [:assign]
 
     def get_assignees
       @kanban_assignees = KanbanAssignee.where(kanban_id: kanban_assignee_params['kanban_id'])
@@ -21,7 +22,6 @@ module Api
       respond_to do |format|
         if KanbanAssignee.create!(kanban_assignees)
           format.json { render json: @kanban_assignees, status: :created }
-          format.turbo_stream { flash.now[:notice] = 'Users assigned successfully.' }
         else
           format.json { render json: @kanban_assignees.errors, status: :unprocessable_entity }
         end
@@ -30,8 +30,23 @@ module Api
 
     private
 
-    def kanban_assignee
-      JSON.parse(kanban_assignee_params['assignees_list_in_kanban'])
+    def validates_kanban_author
+      kanban = Kanban.find(kanban_assignee_params['kanban_id'])
+      return if current_auth.id == kanban.author.id
+
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend('flash', partial: '/components/partial/flash')
+        }
+        format.json {
+          render json: {
+            error: :unauthorized,
+            status: 401,
+            message: 'Only creator can assign users for this project!'
+          }
+        }
+
+      end
     end
 
     def kanban_assignee_params

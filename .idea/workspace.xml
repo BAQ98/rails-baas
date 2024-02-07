@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: post data in assignees stimulus controller">
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_error.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_filter.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_header.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_pagination.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_search.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/accounts/_accounts_table.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/kanbans/_kanban_cards_list.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/kanbans/_kanban_error.html.erb" afterDir="false" />
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: refactor accounts and kanbans">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/accounts/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/accounts/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/_kanban_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_kanban_list.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/shared/_kanban_head.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/shared/_kanban_head.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_toast.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/ui/_toast.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +298,9 @@
       <workItem from="1706920977040" duration="13595000" />
       <workItem from="1706969796555" duration="4179000" />
       <workItem from="1707008072774" duration="12035000" />
-      <workItem from="1707097297271" duration="2315000" />
+      <workItem from="1707097297271" duration="12213000" />
+      <workItem from="1707193500544" duration="4819000" />
+      <workItem from="1707269231292" duration="3150000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -460,7 +454,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707020375365</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="feat: refactor accounts and kanbans">
+      <option name="closed" value="true" />
+      <created>1707101783226</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1707101783226</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,6 +493,7 @@
     <MESSAGE value="feat: get assignee list in stimulus controller" />
     <MESSAGE value="feat: set init data in assignees stimulus controller" />
     <MESSAGE value="feat: post data in assignees stimulus controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: post data in assignees stimulus controller" />
+    <MESSAGE value="feat: refactor accounts and kanbans" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: refactor accounts and kanbans" />
   </component>
 </project>
