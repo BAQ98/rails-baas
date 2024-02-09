@@ -35,17 +35,13 @@ module Api
       return if current_auth.id == kanban.author.id
 
       respond_to do |format|
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend('flash', partial: '/components/partial/flash')
-        }
+        format.turbo_stream { render partial: 'components/partial/flash', status: :see_other, locals: { locals: { flash: flash.now[:notice] = "Only project's creator can assign" } } }
         format.json {
           render json: {
-            error: :unauthorized,
             status: 401,
-            message: 'Only creator can assign users for this project!'
+            message: "Only project's creator can assign",
           }
         }
-
       end
     end
 

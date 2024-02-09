@@ -6,13 +6,20 @@ import { Turbo } from '@hotwired/turbo-rails';
 export default class extends Controller {
   static targets = ['input', 'list', 'item',
                     'itemButton', 'selection',
-                    'selectionInput'];
+                    'selectionInput', 'tooltip'];
 
   static values = { assigneesList: { type: Array, default: [] } };
 
   connect() {
     console.log('kanban--select-assignee connected');
     this.setAssignees();
+  }
+
+  tooltipShow(e) {
+    const isAuthorized = Boolean(e.currentTarget.dataset.isAuthorized !== 'false');
+    if (!isAuthorized) {
+      this.tooltipTarget.classList.toggle('hidden');
+    }
   }
 
   async setAssignees() {
@@ -32,10 +39,12 @@ export default class extends Controller {
       this.addSelection(null, item.profile_id);
       // toggle button add if input exist
       this.itemButtonTargets.forEach(ib => {
+        const iconAdd = ib.querySelector('[data-select-icon="iconAdd"]');
+        const iconCheck = ib.querySelector('[data-select-icon="iconCheck"]');
         if (Number(ib.dataset.itemButtonId) === item.profile_id) {
           ib.dataset.itemIsAdd = String(true);
-          ib.firstElementChild.classList.toggle('hidden');
-          ib.lastElementChild.classList.toggle('hidden');
+          iconAdd.classList.toggle('hidden');
+          iconCheck.classList.toggle('hidden');
         }
       });
     });
@@ -57,8 +66,11 @@ export default class extends Controller {
     let isAdded = Boolean(e.currentTarget.dataset.itemIsAdd !== 'false');
     const toggleButtonAdd = (e) => {
       e.currentTarget.dataset.itemIsAdd = String(!isAdded);
-      e.currentTarget.firstElementChild.classList.toggle('hidden');
-      e.currentTarget.lastElementChild.classList.toggle('hidden');
+
+      const iconAdd = e.currentTarget.querySelector('[data-select-icon="iconAdd"]');
+      const iconCheck = e.currentTarget.querySelector('[data-select-icon="iconCheck"]');
+      iconAdd.classList.toggle('hidden');
+      iconCheck.classList.toggle('hidden');
     };
 
     const removeSelection = (e) => {
@@ -94,7 +106,7 @@ export default class extends Controller {
     });
 
     if (assigneesListInKanban.length === this.assigneesListValue.length) {
-      Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`, { action: 'replace' });
       return;
     }
 
@@ -113,13 +125,15 @@ export default class extends Controller {
           responseKind: 'turbo-stream'
         });
 
-      console.log(request);
+      const result = await request.json;
 
-      // const result = await response;
+      if (result.status === 401) {
 
-      // if (result.status === 201) {
-      //   Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
-      // }
+      }
+
+      if (result.status === 201) {
+        Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      }
     }
   }
 }

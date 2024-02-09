@@ -1,3 +1,5 @@
+<% isAuthorized = current_auth.id === @kanban.author_id %>
+
 <%= render_dialog do %>
   <%= dialog_trigger do %>
     <button
@@ -9,6 +11,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"/>
       </svg>
     </button>
+
   <% end %>
 
   <%= dialog_content do %>
@@ -29,7 +32,7 @@
           data-kanban--select-assignee-target="input"
         >
       </div>
-      <div class="flex flex-col gap-4 overflow-y-scroll max-h-[280px] py-2"
+      <div class="relative flex-col gap-4 overflow-y-scroll max-h-[280px] py-2"
            data-kanban--select-assignee-target="list"
       >
         <% @accounts.each do |account| %>
@@ -56,18 +59,21 @@
                 <%= account.auth.email %>
               </div>
             </div>
+            <% if current_auth.id === account.id %>
+              <span class="ml-auto mr-3 cursor-default bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">You</span>
+            <% end %>
             <button
               data-kanban--select-assignee-target="itemButton"
               data-item-button-id="<%= account.id %>"
               data-action="click->kanban--select-assignee#select"
               data-item-is-add="false"
-              class="ml-auto mr-3 group"
-              type="button"
+              class="relative ml-auto mr-3 group <%= 'hidden' if current_auth.id === account.id %> <%= 'cursor-not-allowed' if current_auth.id != @kanban.author_id %>" type="button"
+              <%= :disabled if current_auth.id != @kanban.author_id %>
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-red-700">
+              <svg data-select-icon="iconAdd" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-red-700">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
               </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-500 group-hover:text-green-700 hidden">
+              <svg data-select-icon="iconCheck" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-500 group-hover:text-green-700 hidden">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
               </svg>
             </button>
@@ -75,12 +81,18 @@
         <% end %>
       </div>
       <button
-        class="flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+        class="relative flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 <%= 'cursor-not-allowed' if current_auth.id != @kanban.author_id %>"
         type="submit"
-        data-action="click->kanban--select-assignee#save"
+        data-action="click->kanban--select-assignee#save mouseover->kanban--select-assignee#tooltipShow mouseout->kanban--select-assignee#tooltipShow"
+        data-is-authorized="<%= isAuthorized %>"
       >
         Save
       </button>
+      <% if current_auth.id != @kanban.author_id %>
+        <div data-kanban--select-assignee-target="tooltip" role="tooltip" class="absolute hidden z-500 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm bottom-20 left-[50%] translate-x-[-50%]">
+          You have to be creator to assign
+        </div>
+      <% end %>
       <template id="assigneeInput">
         <input data-kanban--select-assignee-target="selectionInput" type="text" multiple="multiple" hidden name="kanban_assignee[assignees][]"/>
       </template>

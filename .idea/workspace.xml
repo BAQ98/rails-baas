@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: refactor accounts and kanbans">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: init select assignee turbo frame">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/kanban_assignees_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_toast.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/components/ui/_toast.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
     </list>
@@ -300,7 +299,8 @@
       <workItem from="1707008072774" duration="12035000" />
       <workItem from="1707097297271" duration="12213000" />
       <workItem from="1707193500544" duration="4819000" />
-      <workItem from="1707269231292" duration="3150000" />
+      <workItem from="1707269231292" duration="5353000" />
+      <workItem from="1707444414786" duration="14090000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -462,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707101783226</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="feat: init select assignee turbo frame">
+      <option name="closed" value="true" />
+      <created>1707273655233</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1707273655233</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,6 +502,7 @@
     <MESSAGE value="feat: set init data in assignees stimulus controller" />
     <MESSAGE value="feat: post data in assignees stimulus controller" />
     <MESSAGE value="feat: refactor accounts and kanbans" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: refactor accounts and kanbans" />
+    <MESSAGE value="feat: init select assignee turbo frame" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: init select assignee turbo frame" />
   </component>
 </project>
