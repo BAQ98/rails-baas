@@ -16,6 +16,7 @@ export default class extends Controller {
   }
 
   tooltipShow(e) {
+    e.preventDefault();
     const isAuthorized = Boolean(e.currentTarget.dataset.isAuthorized !== 'false');
     if (!isAuthorized) {
       this.tooltipTarget.classList.toggle('hidden');
@@ -96,7 +97,10 @@ export default class extends Controller {
     }
   }
 
-  async save() {
+  async save(e) {
+    const isAuthorized = Boolean(e.currentTarget.dataset.isAuthorized !== 'false');
+    if (!isAuthorized) return;
+
     const assigneesListInKanban = [];
     this.selectionInputTargets.forEach(item => {
       assigneesListInKanban.push({

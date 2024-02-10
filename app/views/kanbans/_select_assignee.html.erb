@@ -15,7 +15,6 @@
   <% end %>
 
   <%= dialog_content do %>
-
     <section data-controller="kanban--select-assignee">
       <div
         class="flex"
@@ -32,7 +31,7 @@
           data-kanban--select-assignee-target="input"
         >
       </div>
-      <div class="relative flex-col gap-4 overflow-y-scroll max-h-[280px] py-2"
+      <div class="relative flex flex-col gap-4 overflow-y-scroll max-h-[280px] py-2"
            data-kanban--select-assignee-target="list"
       >
         <% @accounts.each do |account| %>
@@ -81,15 +80,15 @@
         <% end %>
       </div>
       <button
-        class="relative flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 <%= 'cursor-not-allowed' if current_auth.id != @kanban.author_id %>"
+        class="relative flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium w-full ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 <%= 'cursor-not-allowed' unless isAuthorized %>"
         type="submit"
         data-action="click->kanban--select-assignee#save mouseover->kanban--select-assignee#tooltipShow mouseout->kanban--select-assignee#tooltipShow"
         data-is-authorized="<%= isAuthorized %>"
       >
         Save
       </button>
-      <% if current_auth.id != @kanban.author_id %>
-        <div data-kanban--select-assignee-target="tooltip" role="tooltip" class="absolute hidden z-500 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm bottom-20 left-[50%] translate-x-[-50%]">
+      <% unless isAuthorized %>
+        <div data-kanban--select-assignee-target="tooltip" role="tooltip" class="absolute hidden z-500 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm bottom-20 left-[50%] translate-x-[-50%] whitespace-nowrap">
           You have to be creator to assign
         </div>
       <% end %>
