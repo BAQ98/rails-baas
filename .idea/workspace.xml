@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finished select assignee authorization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/select_assignee_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_select_assignee.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +300,8 @@
       <workItem from="1707193500544" duration="4819000" />
       <workItem from="1707269231292" duration="5353000" />
       <workItem from="1707444414786" duration="14197000" />
-      <workItem from="1707481048362" duration="1903000" />
+      <workItem from="1707481048362" duration="13997000" />
+      <workItem from="1707609283939" duration="3189000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -477,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707470962260</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: finished select assignee authorization">
+      <option name="closed" value="true" />
+      <created>1707525623006</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1707525623006</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

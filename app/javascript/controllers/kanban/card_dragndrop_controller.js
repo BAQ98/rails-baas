@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { FetchRequest } from '@rails/request.js';
+import { get, patch } from '@rails/request.js';
 import Sortable from 'sortablejs';
 
 // Connects to data-controller="kanban--card-dragndrop"
@@ -8,21 +8,39 @@ export default class extends Controller {
                     'formSortInput'];
 
   connect() {
-    console.log('things');
+    this.initSortable(this.kanbanColumnTargets);
   }
 
-  initSortable(els) {
+  async initSortable(els) {
     const kanbanPathId = this.kanbanGroupTarget.dataset.kanbanId;
     const updateCardsOrder = async (kanbanIds) => {
-      await new FetchRequest('patch',
+      return await patch(
         `http://127.0.0.1:3000/kanbans/${kanbanPathId}/sort`,
         {
+          headers: {
+            'ACCEPT': 'application/json'
+          },
           body: {
             kanban: {
               kanbanIds: JSON.stringify(kanbanIds)
             }
           }
-        }).perform();
+        });
+    };
+
+    const isAssignees = async () => {
+      const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
+        headers: {
+          Accept: 'application/json'
+        },
+        query: {
+          'kanban_assignees[kanban_id]': this.selectionTarget.dataset.kanbanId
+        }
+      });
+
+      const assignees = await response.json
+
+      if(await )
     };
 
     const saveKanban = (colElements) => {
@@ -37,19 +55,8 @@ export default class extends Controller {
       });
 
       updateCardsOrder(kanbanIds);
-
     };
 
-    els.forEach((col) => {
-      const saveKanbanBinded = saveKanban.bind(null, els);
-      new Sortable(col, {
-        group: 'kanban-col', animation: 300, onEnd: saveKanbanBinded
-      });
-    });
-  }
-
-  connect() {
-    this.initSortable(this.kanbanColumnTargets);
   }
 
 }

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 class KanbansController < ApplicationController
   before_action :authenticate_auth!
-  before_action :set_kanban, only: %i[ show sort destroy update add_assignees ]
+  before_action :set_kanban, only: %i[ show sort destroy update ]
+
   # GET /kanbans or /kanbans.json
   def index
     @kanbans = Kanban.all
@@ -46,14 +47,36 @@ class KanbansController < ApplicationController
   end
 
   def sort
-    sorted_cols = JSON.parse(kanban_params['kanbanIds'])['columns']
-    sorted_cols.each do |col|
-      col['cardIds'].each do |card_id|
-        @card = Card.find(card_id)
-        @card.update!(
-          kanban_column: KanbanColumn.find(col['id']),
-          position: col['cardIds'].find_index(card_id)
-        )
+    if validate_assignee?
+      sorted_cols = JSON.parse(kanban_params['kanbanIds'])['columns']
+      sorted_cols.each do |col|
+        col['cardIds'].each do |card_id|
+          @card = Card.find(card_id)
+          @card.update!(
+            kanban_column: KanbanColumn.find(col['id']),
+            position: col['cardIds'].find_index(card_id)
+          )
+        end
+      end
+
+      respond_to do |format|
+        format.json do
+          render json: {
+            status: 201,
+            message: 'Sorted',
+            isAuthorized: true
+          }
+        end
+      end
+    else
+      respond_to do |format|
+        format.json do
+          render json: {
+            status: 401,
+            message: 'Unauthorization',
+            isAuthorized: false
+          }
+        end
       end
     end
   end
@@ -70,17 +93,12 @@ class KanbansController < ApplicationController
     end
   end
 
-  def add_assignees(profiles)
-    if @kanban.author_id == current_auth.id
-      profiles.each do |profile|
-        @kanban.assingees.create(profile:)
-      end
-    else
-
-    end
-  end
-
   private
+
+  def validate_assignee?
+    assignees = KanbanAssignee.where(kanban_id: @kanban.id)
+                              .exists?(profile_id: current_auth.id)
+  end
 
   def set_kanban
     @kanban = Kanban.find(params[:id])
