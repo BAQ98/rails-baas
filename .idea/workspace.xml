@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finished validate assignees for card_dragndrop_controller.js">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: validate in card controller and views for assignee">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/cards_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cards_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanbans_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/shared/_dialog.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/shared/_dialog.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/shared/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/shared/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +301,8 @@
       <workItem from="1707481048362" duration="13997000" />
       <workItem from="1707609283939" duration="3329000" />
       <workItem from="1707662558407" duration="3363000" />
-      <workItem from="1707696853566" duration="16600000" />
+      <workItem from="1707696853566" duration="16800000" />
+      <workItem from="1708012088138" duration="5750000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -522,7 +520,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707698955439</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="feat: validate in card controller and views for assignee">
+      <option name="closed" value="true" />
+      <created>1707729269831</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1707729269831</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,6 +564,7 @@
     <MESSAGE value="feat: finished select assignee authorization" />
     <MESSAGE value="feat: validate for card_dragndrop_controller.js" />
     <MESSAGE value="feat: finished validate assignees for card_dragndrop_controller.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: finished validate assignees for card_dragndrop_controller.js" />
+    <MESSAGE value="feat: validate in card controller and views for assignee" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: validate in card controller and views for assignee" />
   </component>
 </project>
