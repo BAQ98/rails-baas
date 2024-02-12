@@ -16,6 +16,11 @@
       <%= form.label "Content", name: :content, class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
       <%= form.text_area :content, class: "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50", placeholder: "Enter card content" %>
     </div>
+    <% if action === :patch %>
+      <div class="sr-only">
+        <%= form.number_field :kanban_column_id, value: card.kanban_column_id %>
+      </div>
+    <% end %>
     <%= form.submit "#{"Create" if action === :post}" "#{"Update" if action === :patch}", class: "cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full" %>
     <div class="sr-only">
       <% if action === :post %>

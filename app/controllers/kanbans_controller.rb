@@ -47,7 +47,7 @@ class KanbansController < ApplicationController
   end
 
   def sort
-    if validate_assignee?
+    if authorized_assignees?
       sorted_cols = JSON.parse(kanban_params['kanbanIds'])['columns']
       sorted_cols.each do |col|
         col['cardIds'].each do |card_id|
@@ -95,9 +95,9 @@ class KanbansController < ApplicationController
 
   private
 
-  def validate_assignee?
-    assignees = KanbanAssignee.where(kanban_id: @kanban.id)
-                              .exists?(profile_id: current_auth.id)
+  def authorized_assignees?
+    KanbanAssignee.where(kanban_id: @kanban.id)
+                  .exists?(profile_id: current_auth.id)
   end
 
   def set_kanban
