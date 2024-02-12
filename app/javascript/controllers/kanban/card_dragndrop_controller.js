@@ -46,7 +46,6 @@ export default class extends Controller {
     };
 
     els.forEach((col) => {
-      console.log(this.isAuthorizedValue);
       const saveKanbanBinded = saveKanban.bind(null, els);
       new Sortable(col, {
         group: 'kanban-col',
@@ -71,7 +70,5 @@ export default class extends Controller {
     const currentUserId = Number(this.kanbanGroupTarget.dataset.currentUserId);
     const isAuthorized = assignees.some(item => item.profile_id === currentUserId);
     this.isAuthorizedValue = isAuthorized;
-    console.log(isAuthorized);
-    console.log(this.isAuthorizedValue);
   };
 }

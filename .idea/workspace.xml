@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: validate for card_dragndrop_controller.js">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finished validate assignees for card_dragndrop_controller.js">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/kanban/card_dragndrop_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kanbans/_kanban_cards_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanbans/_kanban_cards_list.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +301,7 @@
       <workItem from="1707481048362" duration="13997000" />
       <workItem from="1707609283939" duration="3329000" />
       <workItem from="1707662558407" duration="3363000" />
-      <workItem from="1707696853566" duration="1203000" />
+      <workItem from="1707696853566" duration="1757000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -496,7 +495,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707656033622</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: finished validate assignees for card_dragndrop_controller.js">
+      <option name="closed" value="true" />
+      <created>1707698409182</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1707698409182</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: finished validate assignees for card_dragndrop_controller.js">
+      <option name="closed" value="true" />
+      <created>1707698431442</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1707698431442</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,6 +546,7 @@
     <MESSAGE value="feat: init select assignee turbo frame" />
     <MESSAGE value="feat: finished select assignee authorization" />
     <MESSAGE value="feat: validate for card_dragndrop_controller.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: validate for card_dragndrop_controller.js" />
+    <MESSAGE value="feat: finished validate assignees for card_dragndrop_controller.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: finished validate assignees for card_dragndrop_controller.js" />
   </component>
 </project>
