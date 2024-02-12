@@ -6,9 +6,12 @@ import Sortable from 'sortablejs';
 export default class extends Controller {
   static targets = ['kanbanGroup', 'kanbanColumn', 'kanbanCard',
                     'formSortInput'];
+  static values = { isAuthorized: { type: Boolean } };
 
   connect() {
-    this.initSortable(this.kanbanColumnTargets);
+    this.isAssignees().then(() => {
+      this.initSortable(this.kanbanColumnTargets);
+    });
   }
 
   async initSortable(els) {
@@ -28,21 +31,6 @@ export default class extends Controller {
         });
     };
 
-    const isAssignees = async () => {
-      const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
-        headers: {
-          Accept: 'application/json'
-        },
-        query: {
-          'kanban_assignees[kanban_id]': this.selectionTarget.dataset.kanbanId
-        }
-      });
-
-      const assignees = await response.json
-
-      if(await )
-    };
-
     const saveKanban = (colElements) => {
       const kanbanIds = { 'columns': [] };
       colElements.forEach(col => {
@@ -57,6 +45,33 @@ export default class extends Controller {
       updateCardsOrder(kanbanIds);
     };
 
+    els.forEach((col) => {
+      console.log(this.isAuthorizedValue);
+      const saveKanbanBinded = saveKanban.bind(null, els);
+      new Sortable(col, {
+        group: 'kanban-col',
+        animation: 300,
+        onEnd: saveKanbanBinded,
+        disabled: !this.isAuthorizedValue // Disables the sortable if set to true.
+      });
+    });
   }
 
+  async isAssignees() {
+    const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
+      headers: {
+        Accept: 'application/json'
+      },
+      query: {
+        'kanban_assignees[kanban_id]': this.kanbanGroupTarget.dataset.kanbanId
+      }
+    });
+
+    const assignees = await response.json;
+    const currentUserId = Number(this.kanbanGroupTarget.dataset.currentUserId);
+    const isAuthorized = assignees.some(item => item.profile_id === currentUserId);
+    this.isAuthorizedValue = isAuthorized;
+    console.log(isAuthorized);
+    console.log(this.isAuthorizedValue);
+  };
 }

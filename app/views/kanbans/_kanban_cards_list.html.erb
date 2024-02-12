@@ -4,6 +4,7 @@
   <div class="flex justify-start items-start gap-4 mb-3 px-6"
        data-kanban--card-dragndrop-target="kanbanGroup"
        data-kanban-id="<%= @kanban.id %>"
+       data-current-user-id="<%= current_auth.id %>"
   >
     <% @kanban_columns.each do |column| %>
       <div class="flex flex-col py-1">
