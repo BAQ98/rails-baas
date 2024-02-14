@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   # card
   resources :cards
+  # card comment
+  resources :card_comments
 
   root 'home#index'
 end

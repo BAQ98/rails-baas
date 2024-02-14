@@ -20,4 +20,5 @@ class Auth < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   validates_confirmation_of :password, on: :create
+  has_many :card_comments
 end
