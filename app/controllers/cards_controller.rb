@@ -4,6 +4,7 @@ class CardsController < ApplicationController
   before_action :authorized_assignees?, only: %i[ create update destroy ]
 
   def show
+    @card_comments = CardComment.where(card_id: @card.id)
   end
 
   def create
