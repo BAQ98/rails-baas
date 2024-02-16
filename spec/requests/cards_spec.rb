@@ -23,7 +23,8 @@ RSpec.describe "Cards", type: :request do
       }
 
       it 'is successful' do
-        post cards_path, params: { card: valid_attributes }, headers: headers
+        post cards_path, params: { card: valid_attributes }
+        binding.pry
         expect(response).to be_successful
       end
     end

@@ -1,7 +1,8 @@
 FactoryBot.define do
-  factory :card_comment do
-    text { "MyString" }
-    card { nil }
-    auth { nil }
+  factory :card_comment, class: 'CardComment' do
+    sequence(:id, &:to_i)
+    text { |i| "My Comment #{i}" }
+    card
+    auth
   end
 end

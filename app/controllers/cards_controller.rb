@@ -11,6 +11,8 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     respond_to do |format|
       if @card.save!
+        return unless request.referrer.present?
+
         format.html { redirect_to request.referrer, notice: "#{@card.title} was created!" }
         format.json { render json: @card, status: :created }
       else
@@ -36,9 +38,8 @@ class CardsController < ApplicationController
     Card.destroy(@card.id)
     respond_to do |format|
       if response.successful?
-        format.html {
-          redirect_to kanban_path(@kanban_column.kanban_id),
-                      notice: "#{@card.title} card was delete!" }
+        format.html { redirect_to kanban_path(@kanban_column.kanban_id),
+                                  notice: "#{@card.title} card was delete!" }
       else
         flash[:error] = "#{@card.title} couldn't delete. Something went wrong!"
         format.json { render json: @card.errors, status: :unprocessable_entity }
