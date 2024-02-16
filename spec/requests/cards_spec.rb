@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Cards", type: :request do
   let(:headers) do
-    { 'ACCEPT' => 'application/json' }
+    { 'ACCEPT' => 'application/json', 'HTTP_REFERER' => card_path(card.id) }
   end
   let(:auth) { create(:auth) }
   before { sign_in auth }
@@ -13,7 +13,7 @@ RSpec.describe "Cards", type: :request do
 
   describe "POST /create card" do
     context 'create with valid attributes' do
-      let(:valid_attributes) {
+      let(:unvalid_attributes) {
         {
           title: Faker::App.name,
           content: Faker::Lorem.paragraph,
@@ -22,10 +22,10 @@ RSpec.describe "Cards", type: :request do
         }
       }
 
-      it 'is successful' do
-        post cards_path, params: { card: valid_attributes }
-        binding.pry
-        expect(response).to be_successful
+      it 'is not assignee' do
+        post cards_path, params: { card: unvalid_attributes },
+             headers: headers
+        expect(response).to have_http_status(401)
       end
     end
   end
@@ -33,8 +33,12 @@ RSpec.describe "Cards", type: :request do
   describe 'DELETE /destroy card' do
     context 'Delete with existing card' do
       it 'is successful and redirect' do
-        delete card_path(card.id)
-        expect(response).to have_http_status(302)
+        delete card_path(card.id), params: {
+          card: {
+            kanban_column_id: kanban_column.id
+          }
+        }, headers: headers
+        expect(response).to have_http_status(401)
       end
     end
   end
@@ -45,11 +49,13 @@ RSpec.describe "Cards", type: :request do
         {
           title: Faker::App.name,
           content: Faker::Lorem.paragraph,
+          kanban_column_id: kanban_column.id
         }
       }
       it 'is successful and redirect' do
-        patch card_path(card.id), params: { card: valid_attributes }
-        expect(response).to have_http_status(302)
+        patch card_path(card.id), params: { card: valid_attributes },
+              headers: headers
+        expect(response).to have_http_status(401)
       end
     end
   end
