@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: init testing for card comment">
-      <change afterPath="$PROJECT_DIR$/app/views/cards/_card_action.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/_card_comment_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/_card_comment_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/_card_comments.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/_card_comments.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/card_comments_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/card_comments_spec.rb" afterDir="false" />
-    </list>
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finish testing for card comment" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -311,7 +302,7 @@
       <workItem from="1708012088138" duration="6197000" />
       <workItem from="1708050385394" duration="13123000" />
       <workItem from="1708135541358" duration="5158000" />
-      <workItem from="1708218808437" duration="5688000" />
+      <workItem from="1708218808437" duration="6412000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -553,7 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708151752323</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="feat: finish testing for card comment">
+      <option name="closed" value="true" />
+      <created>1708231626477</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1708231626477</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,6 +591,7 @@
     <MESSAGE value="feat: validate in card controller and views for assignee" />
     <MESSAGE value="feat: testing for card and card comment" />
     <MESSAGE value="feat: init testing for card comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: init testing for card comment" />
+    <MESSAGE value="feat: finish testing for card comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: finish testing for card comment" />
   </component>
 </project>
