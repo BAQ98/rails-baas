@@ -10,5 +10,21 @@ RSpec.describe "CardComment", type: :request do
   let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
   let(:kanban_column) { create(:kanban_column, kanban: kanban) }
   let(:card) { create(:card, kanban_column: kanban_column) }
+  let(:card_comment) { create(:card_comment, card: card, auth: auth) }
+
+  describe "POST /create" do
+    let(:valid_attributes) {
+      {
+        text: 'Comment',
+        auth_id: auth.id,
+        card_id: card.id
+      }
+    }
+
+    it 'should successful' do
+      post card_comments_path, params: { card_comment: valid_attributes }
+      expect(response).to have_http_status(302)
+    end
+  end
 
 end
