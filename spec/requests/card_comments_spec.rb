@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "CardComment", type: :request do
+RSpec.describe 'CardComment', type: :request do
   let(:headers) do
     { 'ACCEPT' => 'application/json' }
   end
@@ -12,17 +12,40 @@ RSpec.describe "CardComment", type: :request do
   let(:card) { create(:card, kanban_column: kanban_column) }
   let(:card_comment) { create(:card_comment, card: card, auth: auth) }
 
-  describe "POST /create" do
+  describe 'POST /create' do
     let(:valid_attributes) {
       {
         text: 'Comment',
-        auth_id: auth.id,
-        card_id: card.id
+        card_id: card.id,
+        auth_id: auth.id
       }
     }
 
     it 'should successful' do
       post card_comments_path, params: { card_comment: valid_attributes }
+      expect(response).to have_http_status(302)
+    end
+  end
+
+  describe 'PATCH /update' do
+    let(:new_valid_attributes) {
+      {
+        text: 'New Comment',
+        auth_id: auth.id,
+        card_id: card.id
+      }
+    }
+
+    it 'should updated' do
+      patch card_comment_path(card_comment.id), params: { card_comment: new_valid_attributes }
+      expect(response).to have_http_status(302)
+    end
+  end
+
+  describe 'DELETE /destroy' do
+
+    it 'should updated' do
+      delete card_comment_path(card_comment.id)
       expect(response).to have_http_status(302)
     end
   end

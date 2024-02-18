@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     # kanban_assignee
     get '/kanban_assignees', to: 'kanban_assignees#get_assignees'
     post '/kanban_assignees/assign', to: 'kanban_assignees#assign'
-    post '/kanban_assignees/reassign', to: 'kanban_assignees#reassign'
   end
 
   resources :accounts

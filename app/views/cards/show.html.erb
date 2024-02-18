@@ -62,68 +62,6 @@
     </button>
   </div>
   <%= render "cards/card_comment_form" %>
-  <div class="mt-6 border-t pt-6">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center">
-         <span class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-          </svg>
-        </span>
-        <div class="ml-2">
-          <span class="block font-medium text-gray-700">Micheal Gough</span>
-          <span class="block text-sm text-gray-500">Product Manager</span>
-        </div>
-      </div>
-      <button class="text-gray-400 hover:text-gray-500">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="h-6 w-6"
-        >
-          <circle cx="12" cy="12" r="1"></circle>
-          <circle cx="12" cy="5" r="1"></circle>
-          <circle cx="12" cy="19" r="1"></circle>
-        </svg>
-      </button>
-    </div>
-    <p class="mt-2 text-sm text-gray-700">
-      Latest clicks/conversions. Where you currently have the logo for merchant,
-      we should instead have a logo that
-      represent the referring traffic sources (ex. Google or Facebook). So we're
-      actually missing a column that
-      should say "Source". And there should be no icon for the merchants.
-    </p>
-  </div>
   <%= render "cards/card_comments" %>
-  <div class="flex items-center justify-between mt-6">
-    <%= link_to 'javascript:history.back()' do %>
-      <%= render_button variant: :outline do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"/>
-        </svg>
-      <% end %>
-    <% end %>
-    <div class="flex space-x-2">
-      <%= render_dialog do %>
-        <%= dialog_trigger do %>
-          <%= render_button("Edit", variant: :outline) %>
-        <% end %>
-        <%= render "cards/shared/dialog", card_action: :edit %>
-      <% end %>
-      <%= render_dialog do %>
-        <%= dialog_trigger do %>
-          <%= render_button("Delete", variant: :outline) %>
-        <% end %>
-        <%= render "cards/shared/dialog", card_action: :delete %>
-      <% end %>
-    </div>
-  </div>
+  <%= render "cards/card_action" %>
 </div>
