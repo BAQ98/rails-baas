@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: finish testing for card comment">
-      <change afterPath="$PROJECT_DIR$/app/views/cards/_card_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/components/tooltip_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/ui/tooltip_controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/_card_comments.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/_card_comments.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cards/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cards/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/components/ui/_tooltip.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/importmap.rb" afterDir="false" />
-    </list>
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: add crud comment in card" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -313,7 +302,8 @@
       <workItem from="1708012088138" duration="6197000" />
       <workItem from="1708050385394" duration="13123000" />
       <workItem from="1708135541358" duration="5158000" />
-      <workItem from="1708218808437" duration="15316000" />
+      <workItem from="1708218808437" duration="15469000" />
+      <workItem from="1708307867829" duration="11210000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -563,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708231626477</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="feat: add crud comment in card">
+      <option name="closed" value="true" />
+      <created>1708243868421</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1708243868422</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,6 +601,7 @@
     <MESSAGE value="feat: testing for card and card comment" />
     <MESSAGE value="feat: init testing for card comment" />
     <MESSAGE value="feat: finish testing for card comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: finish testing for card comment" />
+    <MESSAGE value="feat: add crud comment in card" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add crud comment in card" />
   </component>
 </project>

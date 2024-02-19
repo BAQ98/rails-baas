@@ -8,17 +8,26 @@ export default class extends Controller {
                     'formSortInput'];
   static values = { isAuthorized: { type: Boolean } };
 
+  metaContent() {
+
+  };
+
   connect() {
     this.isAssignees().then(() => {
       this.initSortable(this.kanbanColumnTargets);
     });
   }
 
+  url() {
+    return document.head.querySelector('meta[name=rails_env]').content === 'development'
+           ? 'http://127.0.0.1:3000' : '';
+  }
+
   async initSortable(els) {
     const kanbanPathId = this.kanbanGroupTarget.dataset.kanbanId;
     const updateCardsOrder = async (kanbanIds) => {
       return await patch(
-        `http://127.0.0.1:3000/kanbans/${kanbanPathId}/sort`,
+        `${this.url()}/kanbans/${kanbanPathId}/sort`,
         {
           headers: {
             'ACCEPT': 'application/json'
@@ -57,7 +66,7 @@ export default class extends Controller {
   }
 
   async isAssignees() {
-    const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
+    const response = await get(`${this.url()}/api/kanban_assignees`, {
       headers: {
         Accept: 'application/json'
       },

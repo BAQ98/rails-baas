@@ -4,4 +4,13 @@ class Kanban < ApplicationRecord
   has_many :kanban_columns, dependent: :destroy
   has_many :kanban_assignees
   has_many :profiles, through: :kanban_assignees
+
+  after_create :assign_creator
+
+  def assign_creator
+    KanbanAssignee.create(
+      kanban: self,
+      profile: author
+    )
+  end
 end

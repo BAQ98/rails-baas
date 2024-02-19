@@ -11,8 +11,12 @@ export default class extends Controller {
   static values = { assigneesList: { type: Array, default: [] } };
 
   connect() {
-    console.log('kanban--select-assignee connected');
     this.setAssignees();
+  }
+
+  url() {
+    return document.head.querySelector('meta[name=rails_env]').content === 'development'
+           ? 'http://127.0.0.1:3000' : '';
   }
 
   tooltipShow(e) {
@@ -24,7 +28,7 @@ export default class extends Controller {
   }
 
   async setAssignees() {
-    const response = await get(`http://127.0.0.1:3000/api/kanban_assignees`, {
+    const response = await get(`${this.url()}/api/kanban_assignees`, {
       headers: {
         Accept: 'application/json'
       },
@@ -115,7 +119,7 @@ export default class extends Controller {
     }
 
     if (assigneesListInKanban.length !== this.assigneesListValue.length) {
-      const request = await post(`http://127.0.0.1:3000/api/kanban_assignees/assign`,
+      const request = await post(`${this.url()}/api/kanban_assignees/assign`,
         {
           headers: {
             Accept: 'application/json'

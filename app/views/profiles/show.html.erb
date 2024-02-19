@@ -7,21 +7,21 @@
       <div class="mt-10 grid grid-cols-12 gap-x-4 gap-y-6">
         <div class=" sm:col-span-4 block p-6 bg-white border border-gray-100 rounded-lg shadow-md">
           <div class="flex items-center gap-x-6">
-            <div class="relative flex w-28 h-28 items-center overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
-              <% if @profile.avatar.representable? %>
-                <%= image_tag @profile.avatar.variant(:thumb) %>
-              <% else %>
+            <div class="relative w-28 h-28 border flex justify-center align-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+              <% if @profile.avatar.blank? %>
                 <svg class="text-gray-400" fill="currentColor" viewBox="  0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                 </svg>
+              <% else %>
+                <%= image_tag @profile.avatar.variant(:thumb) %>
               <% end %>
             </div>
             <div class="flex flex-col gap-1">
               <h3 class="text-2xl font-medium">
-                <%= @profile.name %>
+                <%= @profile.name != "" ? @profile.name : @profile.auth.email %>
               </h3>
               <span class="text-lg text-gray-600">
-                <%= @profile.position %>
+                <%= @profile.position != "" ? @profile.position : "no position" %>
               </span>
               <div class="">
                 <%= form.label :avatar, class: "flex w-fit items-center gap-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer" do %>
@@ -34,7 +34,6 @@
                 <% end %>
                 <%= form.file_field :avatar, class: "[&::file-selector-button]:hidden" %>
               </div>
-
             </div>
           </div>
         </div>

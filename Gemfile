@@ -6,6 +6,7 @@ ruby '3.2.2'
 
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
+gem 'cloudinary'
 gem 'devise', '~> 4.9'
 gem 'image_processing', '~> 1.12'
 gem 'importmap-rails'
@@ -27,6 +28,7 @@ gem 'tailwindcss-rails', '~> 2.0'
 gem 'tailwind_merge'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'ruby-vips', '~> 2.2'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]

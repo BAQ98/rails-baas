@@ -7,7 +7,6 @@ RSpec.describe 'Api::KanbansController', type: :request do
   let(:auth) { create(:auth) }
   before { sign_in auth }
   let(:profile) { create(:profile, auth: auth) }
-
   let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
   let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
 

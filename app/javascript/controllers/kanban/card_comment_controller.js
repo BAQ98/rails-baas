@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ['comment'];
 
   connect() {
-    
   }
 
   toggleComment(e) {
