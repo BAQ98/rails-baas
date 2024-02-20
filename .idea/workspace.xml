@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: add crud comment in card">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
-    </list>
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat: add crud comment in card" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -310,7 +306,7 @@
       <workItem from="1708218808437" duration="15469000" />
       <workItem from="1708307867829" duration="11446000" />
       <workItem from="1708359567216" duration="475000" />
-      <workItem from="1708389649725" duration="8347000" />
+      <workItem from="1708389649725" duration="9015000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
