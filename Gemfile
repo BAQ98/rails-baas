@@ -24,7 +24,7 @@ gem 'sassc', '~> 2.4'
 gem 'shadcn-ui'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 2.0'
+gem 'tailwindcss-rails'
 gem 'tailwind_merge'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
