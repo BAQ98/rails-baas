@@ -4,17 +4,12 @@ import Sortable from 'sortablejs';
 
 // Connects to data-controller="kanban--card-dragndrop"
 export default class extends Controller {
-  static targets = ['kanbanGroup', 'kanbanColumn', 'kanbanCard',
-                    'formSortInput'];
+  static targets = ['kanbanGroup', 'kanbanColumn', 'kanbanCard'];
   static values = { isAuthorized: { type: Boolean } };
-
-  metaContent() {
-
-  };
 
   connect() {
     this.isAssignees().then(() => {
-      this.initSortable(this.kanbanColumnTargets);
+      this.initSortable(this.kanbanColumnTargets).then();
     });
   }
 

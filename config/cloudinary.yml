@@ -1,0 +1,11 @@
+development:
+  cloud_name: "datgogr7q"
+  api_key: "667325825924398"
+  api_secret: "j-nARkeV5nQc4VwnbipikBlE14Y"
+  secure: true
+
+production:
+  cloud_name: "datgogr7q"
+  api_key: "667325825924398"
+  api_secret: "j-nARkeV5nQc4VwnbipikBlE14Y"
+  secure: true

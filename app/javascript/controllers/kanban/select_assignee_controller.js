@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import { get, post, put } from '@rails/request.js';
+import { get, post } from '@rails/request.js';
 import { Turbo } from '@hotwired/turbo-rails';
 
 // Connects to data-controller="kanban--select-assignee"
@@ -119,28 +119,21 @@ export default class extends Controller {
     }
 
     if (assigneesListInKanban.length !== this.assigneesListValue.length) {
-      const request = await post(`${this.url()}/api/kanban_assignees/assign`,
+      const { response } = await post(`${this.url()}/api/kanban_assignees/assign`,
         {
           headers: {
-            Accept: 'application/json'
+            'ACCEPT': 'application/json'
           },
           body: {
             kanban_assignees: {
               assignees_list_in_kanban: JSON.stringify(assigneesListInKanban),
               kanban_id: Number(this.selectionTarget.dataset.kanbanId)
             }
-          },
-          responseKind: 'turbo-stream'
+          }
         });
 
-      const result = await request.json;
-
-      if (result.status === 401) {
-
-      }
-
-      if (result.status === 201) {
-        Turbo.visit(`/kanbans/${this.selectionTarget.dataset.kanbanId}`);
+      if (response.status === 201) {
+        Turbo.visit(`http://127.0.0.1:3000/kanbans/${this.selectionTarget.dataset.kanbanId}`);
       }
     }
   }
