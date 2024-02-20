@@ -29,13 +29,13 @@ gem 'tailwind_merge'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'ruby-vips', '~> 2.2'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
-  gem 'rack-cors'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'ruby-lsp', require: false
 end
