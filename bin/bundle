@@ -47,8 +47,8 @@ m = Module.new do
   def lockfile
     lockfile =
       case File.basename(gemfile)
-      when 'gems.rb' then gemfile.sub(/\.rb$/, '.locked')
-      else "#{gemfile}.lock"
+        when 'gems.rb' then gemfile.sub(/\.rb$/, '.locked')
+        else "#{gemfile}.lock"
       end
     File.expand_path(lockfile)
   end
@@ -65,8 +65,8 @@ m = Module.new do
   def bundler_requirement
     @bundler_requirement ||=
       env_var_version ||
-      cli_arg_version ||
-      bundler_requirement_for(lockfile_version)
+        cli_arg_version ||
+        bundler_requirement_for(lockfile_version)
   end
 
   def bundler_requirement_for(version)
