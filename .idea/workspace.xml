@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="">
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/render-build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/render-build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/shadcn.tailwind.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/shadcn.tailwind.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +312,7 @@
       <workItem from="1708359567216" duration="475000" />
       <workItem from="1708389649725" duration="10499000" />
       <workItem from="1708403327681" duration="6069000" />
-      <workItem from="1708476834105" duration="4478000" />
+      <workItem from="1708476834105" duration="6055000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
@@ -571,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708243868422</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
+      <option name="closed" value="true" />
+      <created>1708484219987</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1708484219988</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,6 +619,7 @@
     <MESSAGE value="feat: init testing for card comment" />
     <MESSAGE value="feat: finish testing for card comment" />
     <MESSAGE value="feat: add crud comment in card" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add crud comment in card" />
+    <MESSAGE value="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh" />
   </component>
 </project>
