@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/render-build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/render-build.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +314,7 @@
       <workItem from="1708403327681" duration="6069000" />
       <workItem from="1708476834105" duration="12122000" />
       <workItem from="1708516265035" duration="4579000" />
-      <workItem from="1708562510046" duration="8313000" />
+      <workItem from="1708562510046" duration="8929000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
