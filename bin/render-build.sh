@@ -8,6 +8,6 @@ bundle exec rails yarn:install
 bundle exec rails tailwindcss:build
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
-bundle exec rails db:setup
 bundle exec rails db:create
 bundle exec rails db:migrate
+bundle exec rails db:seed
