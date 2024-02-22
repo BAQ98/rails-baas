@@ -6,5 +6,5 @@ bundle install
 bundle exec rails tailwindcss:install
 bundle exec rails tailwindcss:build
 bundle exec rails db:migrate
-bundle exec rails assets:precompile
 bundle exec rails assets:clean
+bundle exec rails assets:precompile
