@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@rails/request.js": "^0.0.9"
+    "@rails/request.js": "^0.0.9",
+    "tailwindcss-animate": "1.0.6"
   },
   "devDependencies": {
     "tailwindcss-animate": "1.0.6",
