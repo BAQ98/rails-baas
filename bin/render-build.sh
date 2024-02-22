@@ -3,8 +3,8 @@
 set -o errexit
 
 bundle install
-npm i tailwindcss-animate
-npm i
+yarn install
+yarn add tailwindcss-animate@1.0.6
 bundle exec rails yarn:install
 bundle exec rails tailwindcss:build
 bundle exec rails assets:precompile
