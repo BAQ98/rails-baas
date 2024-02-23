@@ -6,7 +6,12 @@ module Authorization
       kanban_id = KanbanColumn.find(params[:id] || params[:kanban_column_id]).kanban_id
     elsif params.key?(:kanban_id)
       kanban_id = Kanban.find(params[:kanban_id]).id
+    elsif params.key?(:card_id)
+      kanban_id = Card.find(params[:card_id]).kanban_column.kanban_id
     end
+
+    binding.pry
+
     is_authorized = KanbanAssignee.where(kanban_id: kanban_id)
                                   .exists?(profile_id: current_auth.id)
 

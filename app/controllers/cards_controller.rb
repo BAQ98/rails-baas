@@ -52,20 +52,6 @@ class CardsController < ApplicationController
 
   private
 
-  # def authorized_assignees?
-  #   kanban_id = KanbanColumn.find(card_params['kanban_column_id']).kanban_id
-  #   is_authorized = KanbanAssignee.where(kanban_id: kanban_id)
-  #                                 .exists?(profile_id: current_auth.id)
-  #
-  #   return if is_authorized
-  #
-  #   respond_to do |format|
-  #     flash[:error] = 'Only Assignee can modify'
-  #     format.html { redirect_to request.referrer }
-  #     format.json { render json: :unauthorized, status: :unauthorized }
-  #   end
-  # end
-
   def set_instances
     @card = Card.find(params[:id])
     @kanban_column = KanbanColumn.find(@card.kanban_column_id)
