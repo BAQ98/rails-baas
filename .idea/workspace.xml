@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
+      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/authorization.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/cards_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cards_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/kanban_columns_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kanban_columns_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kanban_columns/shared/_form_create.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kanban_columns/shared/_form_create.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/render-build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/render-build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +323,9 @@
       <workItem from="1708403327681" duration="6069000" />
       <workItem from="1708476834105" duration="12122000" />
       <workItem from="1708516265035" duration="4579000" />
-      <workItem from="1708562510046" duration="17103000" />
+      <workItem from="1708562510046" duration="17745000" />
+      <workItem from="1708618013327" duration="1345000" />
+      <workItem from="1708653562839" duration="12635000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />

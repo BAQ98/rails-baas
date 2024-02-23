@@ -17,38 +17,3 @@ Auth.destroy_all
     password_confirmation: 'password'
   )
 end
-
-# Kanban
-Card.destroy_all
-KanbanColumn.destroy_all
-Kanban.destroy_all
-my_kanban = Kanban.create(
-  name: 'New Lamborgucci project',
-  description: 'Project to build the most esthetically car ever made.',
-  author: Profile.first
-)
-backlog = KanbanColumn.create(
-  name: 'Backlog',
-  kanban: my_kanban
-)
-Card.create(title: 'Engine Building', content: 'Build engine', position: 0,
-            kanban_column: backlog)
-Card.create(title: 'Purchaser',
-            content: 'Purchase the tires',
-            position: 1, kanban_column: backlog)
-Card.create(title: 'Cockpit Project', content: 'Code the cockpit software',
-            position: 2, kanban_column: backlog)
-todo = KanbanColumn.create(
-  name: 'To Do',
-  kanban: my_kanban
-)
-Card.create(title: 'Card Design', content: 'Design the car', position: 0,
-            kanban_column: todo)
-completed = KanbanColumn.create(
-  name: 'Completed',
-  kanban: my_kanban
-)
-Card.create(title: 'HR Requirement', content: 'Build the engineer team',
-            position: 0, kanban_column: completed)
-Card.create(title: 'Finnacial Task', content: 'Find fundings', position: 1,
-            kanban_column: completed)

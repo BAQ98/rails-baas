@@ -1,6 +1,12 @@
 class KanbanColumnsController < ApplicationController
   before_action :authenticate_auth!
   before_action :set_instances, only: %i[ destroy update show ]
+  before_action only: %i[ update destroy ] do
+    authorized_assignees?(params)
+  end
+  before_action only: %[create] do
+    authorized_assignees?(kanban_column_params)
+  end
 
   def index
   end
@@ -10,7 +16,9 @@ class KanbanColumnsController < ApplicationController
     respond_to do |format|
       if @kanban_column.save!
         format.html { redirect_to kanban_path(@kanban_column.kanban_id),
-                                  notice: "#{@kanban_column.name} was successfully created." }
+                                  notice: "#{@kanban_column.name} was successfully created."
+        return
+        }
       else
         flash[:error] = "#{@kanban_column.name} couldn't created. Something went wrong!"
       end
@@ -41,7 +49,6 @@ class KanbanColumnsController < ApplicationController
   end
 
   def show
-
   end
 
   private

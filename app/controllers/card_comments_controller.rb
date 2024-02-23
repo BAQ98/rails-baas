@@ -1,7 +1,9 @@
 class CardCommentsController < ApplicationController
   before_action :authenticate_auth!
   before_action :set_card_comment, only: %i[ update destroy ]
-
+  before_action only: %i[create update destroy] do
+    authorized_assignees?(card_comment_params[''])
+  end
   # POST /card_comments
   def create
     @card_comment = CardComment.new(card_comment_params)

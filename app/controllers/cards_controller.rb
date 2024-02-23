@@ -1,13 +1,16 @@
 class CardsController < ApplicationController
   before_action :authenticate_auth!
   before_action :set_instances, only: %i[ show update destroy ]
-  before_action :authorized_assignees?, only: %i[ create update destroy ]
+  before_action only: %i[ create update destroy ] do
+    authorized_assignees?(card_params)
+  end
 
   def show
     @card_comments = CardComment.where(card_id: @card.id)
   end
 
   def create
+    # authorized_assignees?(card_params['kanban_column_id'])
     @card = Card.new(card_params)
     respond_to do |format|
       if @card.save!
@@ -49,19 +52,19 @@ class CardsController < ApplicationController
 
   private
 
-  def authorized_assignees?
-    kanban_id = KanbanColumn.find(card_params['kanban_column_id']).kanban_id
-    is_authorized = KanbanAssignee.where(kanban_id: kanban_id)
-                                  .exists?(profile_id: current_auth.id)
-
-    return if is_authorized
-
-    respond_to do |format|
-      flash[:error] = 'Only Assignee can modify'
-      format.html { redirect_to request.referrer }
-      format.json { render json: :unauthorized, status: :unauthorized }
-    end
-  end
+  # def authorized_assignees?
+  #   kanban_id = KanbanColumn.find(card_params['kanban_column_id']).kanban_id
+  #   is_authorized = KanbanAssignee.where(kanban_id: kanban_id)
+  #                                 .exists?(profile_id: current_auth.id)
+  #
+  #   return if is_authorized
+  #
+  #   respond_to do |format|
+  #     flash[:error] = 'Only Assignee can modify'
+  #     format.html { redirect_to request.referrer }
+  #     format.json { render json: :unauthorized, status: :unauthorized }
+  #   end
+  # end
 
   def set_instances
     @card = Card.find(params[:id])
