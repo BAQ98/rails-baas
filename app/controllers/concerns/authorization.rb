@@ -10,8 +10,6 @@ module Authorization
       kanban_id = Card.find(params[:card_id]).kanban_column.kanban_id
     end
 
-    binding.pry
-
     is_authorized = KanbanAssignee.where(kanban_id: kanban_id)
                                   .exists?(profile_id: current_auth.id)
 

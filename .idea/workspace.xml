@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/card_comments_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/cards_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cards_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/authorization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/authorization.rb" afterDir="false" />
-    </list>
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -319,7 +314,7 @@
       <workItem from="1708516265035" duration="4579000" />
       <workItem from="1708562510046" duration="17745000" />
       <workItem from="1708618013327" duration="1345000" />
-      <workItem from="1708653562839" duration="14594000" />
+      <workItem from="1708653562839" duration="14718000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
