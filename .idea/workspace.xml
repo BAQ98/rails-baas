@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh" />
+    <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/factories/kanban_assignee.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/kanban_assignees.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/card_comments_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/card_comments_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/kanban_columns_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/kanban_columns_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/kanbans_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/kanbans_spec.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -314,7 +320,9 @@
       <workItem from="1708516265035" duration="4579000" />
       <workItem from="1708562510046" duration="17745000" />
       <workItem from="1708618013327" duration="1345000" />
-      <workItem from="1708653562839" duration="14718000" />
+      <workItem from="1708653562839" duration="15357000" />
+      <workItem from="1708687914735" duration="1027000" />
+      <workItem from="1708735968374" duration="2844000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />

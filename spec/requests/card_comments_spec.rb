@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'CardComment', type: :request do
   let(:headers) do
-    { 'ACCEPT' => 'application/json' }
+    { 'ACCEPT' => 'application/json', 'HTTP_REFERER' => card_path(card.id) }
   end
   let(:auth) { create(:auth) }
   before { sign_in auth }
@@ -11,6 +11,7 @@ RSpec.describe 'CardComment', type: :request do
   let(:kanban_column) { create(:kanban_column, kanban: kanban) }
   let(:card) { create(:card, kanban_column: kanban_column) }
   let(:card_comment) { create(:card_comment, card: card, auth: auth) }
+  let(:kanban_assignee) { create(:kanban_assignee, kanban: kanban, profile: profile) }
 
   describe 'POST /create' do
     let(:valid_attributes) {
@@ -22,7 +23,9 @@ RSpec.describe 'CardComment', type: :request do
     }
 
     it 'should successful' do
-      post card_comments_path, params: { card_comment: valid_attributes }
+      post card_comments_path,
+           params: { card_comment: valid_attributes },
+           headers: { 'HTTP_REFERER' => card_path(kanban.id) }
       expect(response).to have_http_status(302)
     end
   end

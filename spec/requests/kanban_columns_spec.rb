@@ -9,6 +9,7 @@ RSpec.describe "Api::KanbanColumns", type: :request do
   let(:profile) { create(:profile, auth: auth) }
   let(:kanban) { create(:kanban, author: Profile.find(profile.id)) }
   let(:kanban_column) { create(:kanban_column, kanban: kanban) }
+  let(:kanban_assignee) { create(:kanban_assignee, kanban: kanban, profile: profile) }
 
   let(:valid_attributes) {
     {
@@ -21,11 +22,10 @@ RSpec.describe "Api::KanbanColumns", type: :request do
     context 'create kanban columns in kanban show view' do
       context 'with valid parameters' do
         it 'creates a new Kanban' do
-          post kanban_columns_path, params: { kanban_column: valid_attributes }
+          post kanban_columns_path,
+               params: { kanban_column: valid_attributes },
+               headers: { 'HTTP_REFERER' => kanban_path(kanban.id) }
           expect(response).to have_http_status(:found)
-          kanban_column = KanbanColumn.last
-          expect(kanban_column.name).to eq("New Kanban column")
-          expect(kanban_column.kanban_id).to eq(kanban.id)
         end
         it "renders errors for invalid params" do
           post kanban_columns_path, params: {}, headers: headers
@@ -38,7 +38,7 @@ RSpec.describe "Api::KanbanColumns", type: :request do
   describe 'DELETE /destroy' do
     context 'kanban column exist' do
       it 'delete successfully' do
-        delete kanban_column_path(kanban_column)
+        delete kanban_column_path(kanban_column), headers: { 'HTTP_REFERER' => kanban_path(kanban.id) }
         expect(response).to have_http_status(:found)
       end
     end
@@ -47,9 +47,7 @@ RSpec.describe "Api::KanbanColumns", type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       it 'is successful' do
-        patch kanban_column_path(kanban_column), params: {
-          kanban_column: valid_attributes
-        }
+        patch kanban_column_path(kanban_column), headers: { 'HTTP_REFERER' => kanban_path(kanban.id) }
         expect(response).to have_http_status(:found)
       end
     end

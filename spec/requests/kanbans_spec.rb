@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Api::KanbansController', type: :request do
   let(:headers) do
-    { 'ACCEPT' => 'application/json' }
+    { 'ACCEPT' => 'application/json', 'HTTP_REFERER' => kanban_path(kanban.id) }
   end
   let(:auth) { create(:auth) }
   before { sign_in auth }
