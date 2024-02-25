@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :card_comments
   devise_for :auths
+
+  # password
+  # get 'forgot_password', to: 'devise#reset_password_instructions'
 
   namespace :api do
     # auth
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
 
   # card
   resources :cards
+
   # card comment
   resources :card_comments
 
