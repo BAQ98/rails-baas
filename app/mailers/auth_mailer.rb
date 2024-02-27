@@ -1,10 +1,10 @@
 class AuthMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers
-  default template_path: 'auths/mailer'
+  default template_path: 'devise/mailer'
 
-  def welcome_reset_password_instructions(auth)
+  def send_reset_password_instructions(auth)
     create_reset_password_token(auth)
-    mail(to: auth.email, subject: 'Welcome to the New Site')
+    mail(to: auth.email, subject: 'Reset your password')
   end
 
   private
