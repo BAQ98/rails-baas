@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
-      <change afterPath="$PROJECT_DIR$/app/views/devise/mailer/send_reset_password_instructions.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/mailers/auth_mailer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/mailers/auth_mailer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/mailer/reset_password_instructions.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tasks/devise.rake" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tasks/devise.rake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tasks/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tasks/devise.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/auths/mailer/welcome_reset_password_instructions.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,7 +323,7 @@
       <workItem from="1708735968374" duration="12686000" />
       <workItem from="1708874072198" duration="1821000" />
       <workItem from="1708911760427" duration="16430000" />
-      <workItem from="1709001836131" duration="1592000" />
+      <workItem from="1709001836131" duration="3471000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />
