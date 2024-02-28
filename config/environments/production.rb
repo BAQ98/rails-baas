@@ -99,4 +99,6 @@ Rails.application.configure do
 
   # Use Cloudinary.
   config.active_storage.service = :cloudinary
+
+  config.action_mailer.default_url_options = { :host => "rails-baas.onrender.com" }
 end
