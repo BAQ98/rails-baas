@@ -1,0 +1,12 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div class="w-full mt-[160px] p-6 bg-white rounded-lg shadow mx-auto sm:max-w-md sm:p-8">
+      <%= form_for :auth, url: send_token_path do |f| %>
+        <%= f.label :email, "Input your email here", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.email_field :email, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4", required: true %>
+
+        <%= f.submit "Send Reset Password Instructions", class: "text-white w-full cursor-pointer bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" %>
+      <% end %>
+    </div>
+  </div>
+</section>

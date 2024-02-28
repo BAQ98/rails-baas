@@ -2,15 +2,13 @@
 
 Rails.application.routes.draw do
   devise_for :auths
-
-  # password
-  # get 'forgot_password', to: 'devise#reset_password_instructions'
+  get '/forgot_password', to: 'passwords#forgot'
+  post 'send_token', to: 'passwords#send_token'
 
   namespace :api do
     # auth
     resources :auths, only: :show
     get '/auths_by_email', to: 'auths_by_emails#show', as: :auths_by_email
-
     # kanban_assignee
     get '/kanban_assignees', to: 'kanban_assignees#get_assignees'
     post '/kanban_assignees/assign', to: 'kanban_assignees#assign'
