@@ -4,7 +4,7 @@
       <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
         Change Password
       </h2>
-      <%= form_for(resource, as: resource_name, url: auth_password_url(resource, reset_password_token: @token), class: "mt-4 space-y-4 lg:mt-5 md:space-y-5", html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_url(resource, :reset_password_token => @token), class: "mt-4 space-y-4 lg:mt-5 md:space-y-5", html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.hidden_field :reset_password_token %>
         <div class="field mb-2">

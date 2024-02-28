@@ -2,6 +2,6 @@
 # Preview all emails at http://localhost:3000/rails/mailers/user_mailer
 class AuthMailerPreview < ActionMailer::Preview
   def welcome_reset_password_instructions
-    AuthMailer.welcome_reset_password_instructions(Auth.first)
+    AuthMailer.reset_password_instructions(Auth.first)
   end
 end
