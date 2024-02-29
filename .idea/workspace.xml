@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1791982e-4515-4eec-917f-9ad7f3f64dde" name="Changes" comment="feat(deploy): bundle exec rails tailwindcss:build in render-build.sh">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_02_2024_11_48_SA_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_02_2024_11_48_SA__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/environments/production.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/production.rb" afterDir="false" />
     </list>
@@ -324,7 +326,8 @@
       <workItem from="1708911760427" duration="16430000" />
       <workItem from="1709001836131" duration="6182000" />
       <workItem from="1709045419450" duration="3566000" />
-      <workItem from="1709082860986" duration="10265000" />
+      <workItem from="1709082860986" duration="10513000" />
+      <workItem from="1709169431707" duration="905000" />
     </task>
     <task id="LOCAL-00001" summary="feat: profile association for kanban">
       <option name="closed" value="true" />

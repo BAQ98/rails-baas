@@ -99,9 +99,20 @@ Rails.application.configure do
 
   # Use Cloudinary.
   config.active_storage.service = :cloudinary
-  
+
   config.action_mailer.default_url_options = { :host => "rails-baas.onrender.com" }
   config.action_mailer.default_options = { from: 'noreply@mycustomdomain.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => "57883e7155e19a",
+    :password => "13a5c026664b1d",
+    :address => "sandbox.smtp.mailtrap.io",
+    :host => "sandbox.smtp.mailtrap.io",
+    :port => "2525",
+    :authentication => :plain,
+    :open_timeout => 5,
+    :read_timeout => 5
+  }
+
 end
